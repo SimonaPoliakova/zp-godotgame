@@ -1,9 +1,9 @@
 [gd_scene load_steps=30 format=3 uid="uid://xu7tb8s6o6um"]
 
-[ext_resource type="Texture2D" uid="uid://dm8neblxamsvg" path="res://Jump (32x32).png" id="1_1obmi"]
+[ext_resource type="Texture2D" uid="uid://dm8neblxamsvg" path="res://assets/Jump (32x32).png" id="1_1obmi"]
 [ext_resource type="Script" path="res://scenes/main_character.gd" id="1_ebym5"]
-[ext_resource type="Texture2D" uid="uid://hjkavl2ywoyj" path="res://Idle (32x32).png" id="2_oysvy"]
-[ext_resource type="Texture2D" uid="uid://b67blyyq7mc26" path="res://Run (32x32).png" id="4_q8tx5"]
+[ext_resource type="Texture2D" uid="uid://hjkavl2ywoyj" path="res://assets/Idle (32x32).png" id="2_oysvy"]
+[ext_resource type="Texture2D" uid="uid://b67blyyq7mc26" path="res://assets/Run (32x32).png" id="4_q8tx5"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dg226"]
 atlas = ExtResource("2_oysvy")
@@ -198,8 +198,7 @@ script = ExtResource("1_ebym5")
 texture_filter = 1
 scale = Vector2(1.3, 1.3)
 sprite_frames = SubResource("SpriteFrames_321kl")
-animation = &"running"
-frame_progress = 0.0957172
+frame_progress = 0.565749
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0.666667, 2)
