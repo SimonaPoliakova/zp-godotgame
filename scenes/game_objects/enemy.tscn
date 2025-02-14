@@ -1,5 +1,6 @@
-[gd_scene load_steps=15 format=3 uid="uid://bs1yoh71yb0nd"]
+[gd_scene load_steps=16 format=3 uid="uid://bs1yoh71yb0nd"]
 
+[ext_resource type="Script" path="res://scenes/game_objects/enemy.gd" id="1_f4d87"]
 [ext_resource type="Texture2D" uid="uid://b3n7pp1ivgmh0" path="res://assets/characters/Rock3_Idle (22x18).png" id="1_ir5p4"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_kbl5k"]
@@ -91,7 +92,8 @@ animations = [{
 radius = 16.0
 height = 38.0
 
-[node name="enemy" type="RigidBody2D"]
+[node name="enemy" type="CharacterBody2D" groups=["Enemy"]]
+script = ExtResource("1_f4d87")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1

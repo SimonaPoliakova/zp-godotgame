@@ -199,6 +199,7 @@ layer_0/tile_data = PackedInt32Array(1572876, 786432, 5, 1572877, 786432, 5, 157
 
 [node name="CharacterBody2D" parent="." instance=ExtResource("3_rw5j8")]
 position = Vector2(253, 546)
+bubble_scene = null
 
 [node name="platform_jump" type="StaticBody2D" parent="."]
 position = Vector2(253, 546)

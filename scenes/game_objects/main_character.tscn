@@ -1,7 +1,8 @@
-[gd_scene load_steps=30 format=3 uid="uid://xu7tb8s6o6um"]
+[gd_scene load_steps=31 format=3 uid="uid://xu7tb8s6o6um"]
 
 [ext_resource type="Texture2D" uid="uid://dm8neblxamsvg" path="res://assets/characters/Jump (32x32).png" id="1_1obmi"]
 [ext_resource type="Script" path="res://scenes/game_objects/main_character.gd" id="1_ebym5"]
+[ext_resource type="PackedScene" uid="uid://jhoihnwkuivt" path="res://scenes/game_objects/bubble.tscn" id="2_iu0yf"]
 [ext_resource type="Texture2D" uid="uid://hjkavl2ywoyj" path="res://assets/characters/Idle (32x32).png" id="2_oysvy"]
 [ext_resource type="Texture2D" uid="uid://b67blyyq7mc26" path="res://assets/characters/Run (32x32).png" id="4_q8tx5"]
 
@@ -193,6 +194,7 @@ size = Vector2(26.6667, 37.3333)
 [node name="CharacterBody2D" type="CharacterBody2D"]
 scale = Vector2(1.5, 1.5)
 script = ExtResource("1_ebym5")
+bubble_scene = ExtResource("2_iu0yf")
 
 [node name="Sprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
