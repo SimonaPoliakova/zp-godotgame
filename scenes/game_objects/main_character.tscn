@@ -1,10 +1,123 @@
-[gd_scene load_steps=31 format=3 uid="uid://xu7tb8s6o6um"]
+[gd_scene load_steps=34 format=3 uid="uid://dqubm1qibc157"]
 
 [ext_resource type="Texture2D" uid="uid://dm8neblxamsvg" path="res://assets/characters/Jump (32x32).png" id="1_1obmi"]
-[ext_resource type="Script" path="res://scenes/game_objects/main_character.gd" id="1_ebym5"]
-[ext_resource type="PackedScene" uid="uid://jhoihnwkuivt" path="res://scenes/game_objects/bubble.tscn" id="2_iu0yf"]
 [ext_resource type="Texture2D" uid="uid://hjkavl2ywoyj" path="res://assets/characters/Idle (32x32).png" id="2_oysvy"]
 [ext_resource type="Texture2D" uid="uid://b67blyyq7mc26" path="res://assets/characters/Run (32x32).png" id="4_q8tx5"]
+
+[sub_resource type="GDScript" id="GDScript_57jj6"]
+script/source = "extends CharacterBody2D
+
+@export var SPEED = 200.0
+@onready var sprite_2d: AnimatedSprite2D = $Sprite2D
+@export var bubble_scene: PackedScene  # Reference to the Bubble scene
+
+var last_direction = 1  # 1 = right, -1 = left
+
+func _ready():
+	# Make sure to initialize the velocity
+	velocity = Vector2.ZERO  # This will be the built-in velocity property in CharacterBody2D
+
+func _physics_process(delta: float) -> void:
+	# Add gravity
+	if not is_on_floor():
+		velocity += get_gravity() * delta
+	
+	# Handle jump
+	if Input.is_action_just_pressed(\"jump\") and is_on_floor():
+		velocity.y = -780.0  # Adjust jump force as needed
+	
+	# Handle movement
+	var direction := Input.get_axis(\"left\", \"right\")
+	if direction:
+		velocity.x = direction * SPEED
+		last_direction = direction  # Save last movement direction
+	else:
+		velocity.x = move_toward(velocity.x, 0, 30)
+
+	# Move the player using the updated velocity (no arguments passed)
+	move_and_slide()
+
+	# Flip the sprite based on last direction
+	sprite_2d.flip_h = last_direction < 0  
+
+	# Animation logic
+	if not is_on_floor():
+		sprite_2d.animation = \"jumping\"  # Change this to match your jumping animation
+	elif abs(velocity.x) > 1:
+		sprite_2d.animation = \"running\"  # Running animation
+	else:
+		sprite_2d.animation = \"default\"  # Idle animation
+
+	# Play the selected animation
+	sprite_2d.play()
+
+	# Handle shooting
+	if Input.is_action_just_pressed(\"shoot\"):
+		shoot_bubble()
+
+func shoot_bubble():
+	if bubble_scene:
+		var bubble = bubble_scene.instantiate() as Area2D
+		get_parent().add_child(bubble)
+
+		# Spawn bubble slightly in front of the player based on the direction
+		var offset = Vector2(40 * sign(last_direction), 10)  # Moves in front & slightly above the player
+		bubble.global_position = global_position + offset
+		
+		# Set the bubble's movement direction based on the last_direction
+		if last_direction == 1:  # Facing right
+			bubble.velocity = Vector2(SPEED, 0)  # Moving right
+		else:  # Facing left
+			bubble.velocity = Vector2(-SPEED, 0)  # Moving left
+		
+		# Debugging the velocity
+		print(\"Bubble velocity: \", bubble.velocity)
+	else:
+		print(\"Bubble scene not assigned!\")
+"
+
+[sub_resource type="GDScript" id="GDScript_4ed0u"]
+script/source = "extends Area2D  # Make sure it's an Area2D for collision detection
+
+@export var SPEED = 200  # Speed of the bubble
+var velocity = Vector2.ZERO  # Velocity of the bubble
+
+# Signal to handle bubble hitting the enemy
+signal bubble_hit_enemy(enemy)
+
+func _ready():
+	# Connect the area_entered signal to detect collisions
+	connect(\"area_entered\", Callable(self, \"_on_bubble_hit\"))
+
+func _physics_process(delta):
+	# Move the bubble based on its velocity
+	position += velocity * delta  # Move the bubble in the direction of its velocity
+
+func _on_bubble_hit(area: Area2D) -> void:
+	# Check if the area is an enemy
+	if area.is_in_group(\"Enemy\"):  # Make sure the enemy is in the \"enemies\" group
+		area.queue_free()  # Destroy the enemy
+		queue_free()  # Destroy the bubble
+"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_6kmne"]
+load_path = "res://.godot/imported/bubble.png-dd17930a71c5ad345ddb3eb8ec316790.ctex"
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_r4t5x"]
+radius = 18.0
+
+[sub_resource type="PackedScene" id="PackedScene_7mc7f"]
+_bundled = {
+"conn_count": 1,
+"conns": PackedInt32Array(1073741827, 1073741826, 14, 13, 2, 0, 0),
+"editable_instances": [],
+"names": PackedStringArray("Bubble", "Area2D", "position", "collision_mask", "script", "Sprite2D", "Sprite2D", "position", "scale", "texture", "CollisionShape2D", "CollisionShape2D", "shape", "_on_area_entered", "area_entered"),
+"node_count": 3,
+"node_paths": [NodePath("."), NodePath("."), NodePath("."), NodePath(".")],
+"nodes": PackedInt32Array(-1, -1, 1, 0, -1, 3, 2, 0, 3, 1, 4, 2, 0, 1073741824, 0, 6, 5, -1, 3, 7, 3, 8, 4, 9, 5, 0, 1073741825, 0, 11, 10, -1, 1, 12, 6, 0),
+"variants": [Vector2(0, 19), 2, SubResource("GDScript_4ed0u"), Vector2(-0.5, -0.5), Vector2(0.234375, 0.234375), SubResource("CompressedTexture2D_6kmne"), SubResource("CircleShape2D_r4t5x")],
+"version": 3
+}
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dg226"]
 atlas = ExtResource("2_oysvy")
@@ -193,8 +306,8 @@ size = Vector2(26.6667, 37.3333)
 
 [node name="CharacterBody2D" type="CharacterBody2D"]
 scale = Vector2(1.5, 1.5)
-script = ExtResource("1_ebym5")
-bubble_scene = ExtResource("2_iu0yf")
+script = SubResource("GDScript_57jj6")
+bubble_scene = SubResource("PackedScene_7mc7f")
 
 [node name="Sprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1

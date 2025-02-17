@@ -1,20 +1,27 @@
-[gd_scene load_steps=4 format=3 uid="uid://jhoihnwkuivt"]
+[gd_scene load_steps=4 format=3 uid="uid://dswblgmi6puyh"]
 
-[ext_resource type="Texture2D" uid="uid://c8ljsetrn74r5" path="res://assets/bubble.png" id="1_edn54"]
-[ext_resource type="Script" path="res://scenes/game_objects/bubble.gd" id="1_pkxov"]
+[ext_resource type="Script" path="res://bubble.gd" id="1_p7f5t"]
+[ext_resource type="Texture2D" uid="uid://d24fj00mu0fv1" path="res://assets/terrain/bubble.png" id="2_drlr5"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_am7ou"]
-radius = 18.6011
+[sub_resource type="CircleShape2D" id="CircleShape2D_3e8dt"]
+radius = 75.06
 
-[node name="Bubble" type="CharacterBody2D"]
-position = Vector2(0, 19)
-script = ExtResource("1_pkxov")
+[node name="bubble" type="Area2D"]
+scale = Vector2(0.2, 0.2)
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("1_p7f5t")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(-0.5, -0.5)
-scale = Vector2(0.234375, 0.234375)
-texture = ExtResource("1_edn54")
+texture = ExtResource("2_drlr5")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -1)
-shape = SubResource("CircleShape2D_am7ou")
+position = Vector2(-6, 1)
+shape = SubResource("CircleShape2D_3e8dt")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 3.0
+autostart = true
+
+[connection signal="body_entered" from="." to="." method="_on_bubble_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
