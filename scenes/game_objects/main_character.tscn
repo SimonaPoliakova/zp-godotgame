@@ -101,7 +101,6 @@ func _on_bubble_hit(area: Area2D) -> void:
 "
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_6kmne"]
-load_path = "res://.godot/imported/bubble.png-dd17930a71c5ad345ddb3eb8ec316790.ctex"
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_r4t5x"]
 radius = 18.0

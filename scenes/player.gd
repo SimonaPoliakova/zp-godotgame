@@ -6,7 +6,7 @@ var speed = 180
 var gravity = 20
 var jump = -530
 
-var bubble_speed = 150 
+var bubble_speed = 180
 
 func _ready():
 	$AnimatedSprite2D.play("default")  
@@ -26,12 +26,18 @@ func _physics_process(delta):
 
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		velocity.y = jump
+		$AnimatedSprite2D.play("jump") 
+
+	
+	if !is_on_floor():
+		velocity.y += gravity
+		if velocity.y > 0 and $AnimatedSprite2D.animation != "jump":  
+			$AnimatedSprite2D.play("jump")  #
 
 	if Input.is_action_just_pressed("blow"):  
 		blow()
 
-	if !is_on_floor():
-		velocity.y += gravity
+
 
 	move_and_slide()
 
