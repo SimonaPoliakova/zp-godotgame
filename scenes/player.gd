@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 var bubble = preload("res://scenes/game_objects/bubble.tscn")
 
-var speed = 180
+var speed = 140
 var gravity = 20
 var jump = -530
 
@@ -42,7 +42,6 @@ func _physics_process(delta):
 	move_and_slide()
 
 func blow():
-	$AnimatedSprite2D.play("blow")
 	var bubble_ins = bubble.instantiate()  
 
 	if bubble_ins == null:

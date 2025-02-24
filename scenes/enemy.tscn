@@ -113,8 +113,8 @@ animations = [{
 size = Vector2(20, 14.2174)
 
 [node name="enemy" type="CharacterBody2D"]
-scale = Vector2(2.3, 2.3)
-collision_layer = 3
+scale = Vector2(2.1, 2.1)
+collision_layer = 6
 script = ExtResource("1_dp1p6")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." groups=["enemy"]]
@@ -123,11 +123,12 @@ sprite_frames = SubResource("SpriteFrames_hyw65")
 animation = &"run"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+light_mask = 0
 position = Vector2(4.40556e-07, 1.8913)
 shape = SubResource("RectangleShape2D_vwvkf")
 
-[node name="jump" type="Timer" parent="."]
+[node name="JumpTimer" type="Timer" parent="."]
 wait_time = 4.0
 autostart = true
 
-[connection signal="timeout" from="jump" to="." method="_on_jump_timeout"]
+[connection signal="timeout" from="JumpTimer" to="." method="_on_JumpTimer_timeout"]
