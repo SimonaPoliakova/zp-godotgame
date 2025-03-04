@@ -1,41 +1,64 @@
 extends CharacterBody2D
 
-var speed = 60
-var gravity = 16
-var jump_force_min = -420
-var jump_force_max = -510
+@export var speed := 60.0
+@export var gravity := 16.0
+@export var jump_force_min := -420.0
+@export var jump_force_max := -510.0
+@export var detection_range := 150.0  # Adjusted for Godot's units
+@export var jump_interval_min := 2.0  
+@export var jump_interval_max := 5.0  
 
-var jump_interval_min = 2.0  # Minimum time before jumping
-var jump_interval_max = 5.0  # Maximum time before jumping
+@onready var sprite = $AnimatedSprite2D
+@onready var jump_timer = $JumpTimer
+@onready var player = get_tree().get_first_node_in_group("player")
+
+var facing_right := true
 
 func _ready():
-	add_to_group("enemy")  
-	$AnimatedSprite2D.play("run")
-	velocity.x = speed 
-	schedule_next_jump()  
+	add_to_group("enemy")
+	sprite.play("run")
+	velocity.x = speed if facing_right else -speed
+	schedule_next_jump()
 
 func _physics_process(delta):
-	if !is_on_floor():
+	if not is_on_floor():
 		velocity.y += gravity
 
-	var collision = move_and_slide()
+	if player and global_position.distance_to(player.global_position) < detection_range:
+		chase_player()
+	else:
+		patrol()
+
+	move_and_slide()
 
 	if is_on_wall():
-		speed = -speed 
-		velocity.x = speed  
-		$AnimatedSprite2D.flip_h = !$AnimatedSprite2D.flip_h  
-	else:
-		velocity.x = speed 
+		flip()
+
+func chase_player():
+	if not player:
+		return
+
+	var direction = 1 if player.global_position.x > global_position.x else -1
+	velocity.x = direction * speed
+
+	if (direction > 0 and not facing_right) or (direction < 0 and facing_right):
+		flip()
+
+func patrol():
+	velocity.x = speed if facing_right else -speed
+
+func flip():
+	facing_right = not facing_right
+	sprite.flip_h = not sprite.flip_h
+	velocity.x = -velocity.x
 
 func jump():
 	if is_on_floor():
-		var random_jump = randf_range(jump_force_max, jump_force_min)  
-		velocity.y = random_jump  
+		velocity.y = randf_range(jump_force_min, jump_force_max)
 		schedule_next_jump()
 
 func schedule_next_jump():
-	var random_time = randf_range(jump_interval_min, jump_interval_max)
-	$JumpTimer.start(random_time)  
+	jump_timer.start(randf_range(jump_interval_min, jump_interval_max))
 
 func _on_JumpTimer_timeout():
 	jump()

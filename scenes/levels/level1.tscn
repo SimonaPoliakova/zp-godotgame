@@ -1,8 +1,7 @@
-[gd_scene load_steps=17 format=3 uid="uid://drge4gb2hwctx"]
+[gd_scene load_steps=16 format=3 uid="uid://drge4gb2hwctx"]
 
 [ext_resource type="Texture2D" uid="uid://q3hk7i4q8a07" path="res://assets/background/black.PNG" id="1_tmwbo"]
 [ext_resource type="Texture2D" uid="uid://ckkcion0yvuig" path="res://assets/terrain/Terrain (16x16).png" id="2_ljc8b"]
-[ext_resource type="Texture2D" uid="uid://uuju8kylplvg" path="res://assets/background/heart.png" id="4_7xxgk"]
 [ext_resource type="PackedScene" uid="uid://1n8u2lmx4xea" path="res://scenes/enemy.tscn" id="5_uwd31"]
 [ext_resource type="PackedScene" uid="uid://dekti528g6ebp" path="res://scenes/player.tscn" id="5_vf0yc"]
 
@@ -252,32 +251,6 @@ one_way_collision = true
 position = Vector2(912, 468)
 shape = SubResource("RectangleShape2D_xne7y")
 one_way_collision = true
-
-[node name="HeartPanel" type="Panel" parent="SceneObjects"]
-offset_left = 172.0
-offset_top = 603.0
-offset_right = 271.0
-offset_bottom = 633.0
-
-[node name="HBoxContainer" type="HBoxContainer" parent="SceneObjects/HeartPanel"]
-layout_mode = 0
-offset_right = 99.0
-offset_bottom = 30.0
-
-[node name="Heart1" type="TextureRect" parent="SceneObjects/HeartPanel/HBoxContainer"]
-layout_mode = 2
-texture = ExtResource("4_7xxgk")
-expand_mode = 2
-
-[node name="Heart2" type="TextureRect" parent="SceneObjects/HeartPanel/HBoxContainer"]
-layout_mode = 2
-texture = ExtResource("4_7xxgk")
-expand_mode = 2
-
-[node name="Heart3" type="TextureRect" parent="SceneObjects/HeartPanel/HBoxContainer"]
-layout_mode = 2
-texture = ExtResource("4_7xxgk")
-expand_mode = 2
 
 [node name="CharacterBody2D" parent="SceneObjects" instance=ExtResource("5_vf0yc")]
 position = Vector2(270, 551)
