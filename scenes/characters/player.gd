@@ -2,11 +2,11 @@ extends CharacterBody2D
 
 var bubble = preload("res://scenes/game_objects/bubble.tscn")
 
-var speed = 140
+var speed = 160
 var gravity = 20
 var jump = -530
 
-var bubble_speed = 180
+var bubble_speed = 270
 
 func _ready():
 	$AnimatedSprite2D.play("default")  

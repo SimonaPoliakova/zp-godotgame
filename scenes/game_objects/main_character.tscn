@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://dqubm1qibc157"]
+[gd_scene load_steps=34 format=3 uid="uid://c2wwa53kf7qle"]
 
 [ext_resource type="Texture2D" uid="uid://dm8neblxamsvg" path="res://assets/characters/Jump (32x32).png" id="1_1obmi"]
 [ext_resource type="Texture2D" uid="uid://hjkavl2ywoyj" path="res://assets/characters/Idle (32x32).png" id="2_oysvy"]

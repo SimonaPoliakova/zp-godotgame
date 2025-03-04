@@ -1,6 +1,6 @@
 [gd_scene load_steps=19 format=3 uid="uid://1n8u2lmx4xea"]
 
-[ext_resource type="Script" path="res://enemy.gd" id="1_dp1p6"]
+[ext_resource type="Script" path="res://scenes/characters/enemy.gd" id="1_dp1p6"]
 [ext_resource type="Texture2D" uid="uid://4jrsynjnki5g" path="res://assets/characters/Rock3_Run (22x18).png" id="2_8mshp"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1usal"]

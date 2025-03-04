@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://dswblgmi6puyh"]
+[gd_scene load_steps=5 format=3 uid="uid://dswblgmi6puyh"]
 
 [ext_resource type="Script" path="res://bubble.gd" id="1_p7f5t"]
+[ext_resource type="PackedScene" uid="uid://dctmpa4qowm6" path="res://scenes/game_objects/bubble_trapped.tscn" id="2_c1yfp"]
 [ext_resource type="Texture2D" uid="uid://d24fj00mu0fv1" path="res://assets/terrain/bubble.png" id="2_drlr5"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_3e8dt"]
@@ -11,6 +12,8 @@ scale = Vector2(0.2, 0.2)
 collision_layer = 0
 collision_mask = 2
 script = ExtResource("1_p7f5t")
+speed = 1000.0
+trapped_bubble_scene = ExtResource("2_c1yfp")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_drlr5")

@@ -4,7 +4,7 @@ extends CharacterBody2D
 @export var gravity := 16.0
 @export var jump_force_min := -420.0
 @export var jump_force_max := -510.0
-@export var detection_range := 150.0  # Adjusted for Godot's units
+@export var detection_range := 150.0  
 @export var jump_interval_min := 2.0  
 @export var jump_interval_max := 5.0  
 
