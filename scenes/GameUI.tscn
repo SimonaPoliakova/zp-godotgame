@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://itoh3l6i5gv6"]
+
+[node name="GameUI" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="LevelLabel" type="Label" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="ScoreLabel" type="Label" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="HealthBar" type="ProgressBar" parent="."]
+layout_mode = 0
+offset_right = 4.0
+offset_bottom = 27.0
+
+[node name="GameOverPanel" type="Panel" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0

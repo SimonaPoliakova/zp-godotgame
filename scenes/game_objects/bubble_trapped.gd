@@ -40,7 +40,7 @@ func release_bonus():
 		return
 
 	var selected_platform = platforms[randi() % platforms.size()]
-	var random_x_offset = randf_range(-250.0, 250.0)
+	var random_x_offset = randf_range(-200.0, 200.0)
 	var spawn_position = Vector2(
 		selected_platform.global_position.x + random_x_offset,
 		selected_platform.global_position.y
