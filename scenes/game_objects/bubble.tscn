@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://dswblgmi6puyh"]
 
-[ext_resource type="Script" path="res://bubble.gd" id="1_p7f5t"]
+[ext_resource type="Script" path="res://scenes/game_objects/bubble.gd" id="1_p7f5t"]
 [ext_resource type="PackedScene" uid="uid://dctmpa4qowm6" path="res://scenes/game_objects/bubble_trapped.tscn" id="2_c1yfp"]
-[ext_resource type="Texture2D" uid="uid://d24fj00mu0fv1" path="res://assets/terrain/bubble.png" id="2_drlr5"]
+[ext_resource type="Texture2D" uid="uid://d24fj00mu0fv1" path="res://assets/scene/bubble.png" id="2_drlr5"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_3e8dt"]
 radius = 75.06

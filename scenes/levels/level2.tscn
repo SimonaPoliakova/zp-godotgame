@@ -1,7 +1,7 @@
 [gd_scene load_steps=15 format=3 uid="uid://bf3u37hxoa8td"]
 
 [ext_resource type="Texture2D" uid="uid://q3hk7i4q8a07" path="res://assets/background/black.PNG" id="1_dlorc"]
-[ext_resource type="Texture2D" uid="uid://ckkcion0yvuig" path="res://assets/terrain/Terrain (16x16).png" id="2_hhsv2"]
+[ext_resource type="Texture2D" uid="uid://ckkcion0yvuig" path="res://assets/scene/Terrain (16x16).png" id="2_hhsv2"]
 [ext_resource type="PackedScene" uid="uid://dekti528g6ebp" path="res://scenes/characters/player.tscn" id="3_f6ry8"]
 [ext_resource type="PackedScene" uid="uid://1n8u2lmx4xea" path="res://scenes/characters/enemy.tscn" id="4_ybih6"]
 

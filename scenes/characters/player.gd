@@ -1,5 +1,4 @@
 extends CharacterBody2D
-
 var bubble = preload("res://scenes/game_objects/bubble.tscn")
 
 var speed = 160

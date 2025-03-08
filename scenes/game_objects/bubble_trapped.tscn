@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://dctmpa4qowm6"]
 
-[ext_resource type="Texture2D" uid="uid://d207lg7r1pfkd" path="res://assets/terrain/bubble_trapped.png" id="1_32pf2"]
+[ext_resource type="Texture2D" uid="uid://d207lg7r1pfkd" path="res://assets/scene/bubble_trapped.png" id="1_32pf2"]
 [ext_resource type="Script" path="res://scenes/game_objects/bubble_trapped.gd" id="1_yquxw"]
 [ext_resource type="PackedScene" uid="uid://cldvlsalcs1bp" path="res://scenes/game_objects/bonus_1.tscn" id="2_xr12c"]
 [ext_resource type="PackedScene" uid="uid://cnjueakirl3c7" path="res://scenes/game_objects/bonus_2.tscn" id="3_bufoi"]

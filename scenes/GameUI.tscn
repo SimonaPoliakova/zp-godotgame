@@ -1,27 +1,63 @@
-[gd_scene format=3 uid="uid://itoh3l6i5gv6"]
+[gd_scene load_steps=6 format=3 uid="uid://itoh3l6i5gv6"]
+
+[ext_resource type="Script" path="res://scenes/GameManager.gd" id="1_vwl52"]
+[ext_resource type="FontFile" uid="uid://btj6n4lkyrvnh" path="res://assets/font/pixelated-loveNew.ttf" id="2_uo6on"]
+
+[sub_resource type="FontVariation" id="FontVariation_3151x"]
+base_font = ExtResource("2_uo6on")
+
+[sub_resource type="FontVariation" id="FontVariation_8todx"]
+base_font = ExtResource("2_uo6on")
+
+[sub_resource type="FontVariation" id="FontVariation_dndl5"]
+base_font = ExtResource("2_uo6on")
 
 [node name="GameUI" type="Control"]
 layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_vwl52")
 
 [node name="LevelLabel" type="Label" parent="."]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 23.0
+offset_left = 564.0
+offset_top = 43.0
+offset_right = 672.0
+offset_bottom = 177.0
+scale = Vector2(0.23, 0.23)
+theme_override_fonts/font = SubResource("FontVariation_3151x")
+theme_override_font_sizes/font_size = 100
+text = "01"
+horizontal_alignment = 1
 
 [node name="ScoreLabel" type="Label" parent="."]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 23.0
+offset_left = 171.0
+offset_top = 18.0
+offset_right = 229.0
+offset_bottom = 152.0
+scale = Vector2(0.23, 0.23)
+theme_override_fonts/font = SubResource("FontVariation_8todx")
+theme_override_font_sizes/font_size = 100
+text = "0"
 
-[node name="HealthBar" type="ProgressBar" parent="."]
+[node name="HealthLabel" type="Label" parent="."]
 layout_mode = 0
-offset_right = 4.0
-offset_bottom = 27.0
+offset_left = 171.0
+offset_top = 600.0
+offset_right = 221.0
+offset_bottom = 734.0
+scale = Vector2(0.23, 0.23)
+theme_override_fonts/font = SubResource("FontVariation_dndl5")
+theme_override_font_sizes/font_size = 100
+text = "3
+"
 
 [node name="GameOverPanel" type="Panel" parent="."]
+visible = false
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
