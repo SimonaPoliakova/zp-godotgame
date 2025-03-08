@@ -57,4 +57,5 @@ func _on_AnimatedSprite_animation_finished():
 		$AnimatedSprite2D.play("default")  
 
 func _on_Enemy_checker_body_entered(body):
-	get_tree().change_scene("res://scenes/game_objects/bubble.tscn")
+	if body.is_in_group("enemy"):
+		GameManager.decrease_health(1)  # Reduce health by 1

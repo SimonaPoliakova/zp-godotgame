@@ -102,7 +102,6 @@ radius = 8.0
 collision_layer = 4
 collision_mask = 2
 script = ExtResource("1_8pdcf")
-bonus_value = 535
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1

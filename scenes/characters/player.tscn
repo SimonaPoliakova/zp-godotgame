@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://dekti528g6ebp"]
+[gd_scene load_steps=31 format=3 uid="uid://dekti528g6ebp"]
 
 [ext_resource type="Texture2D" uid="uid://b67blyyq7mc26" path="res://assets/characters/Run (32x32).png" id="2_1u3ew"]
 [ext_resource type="Texture2D" uid="uid://hjkavl2ywoyj" path="res://assets/characters/Idle (32x32).png" id="2_bci6q"]
@@ -66,6 +66,12 @@ func _on_AnimatedSprite_animation_finished():
 
 func _on_Enemy_checker_body_entered(body):
 	get_tree().change_scene(\"res://scenes/game_objects/bubble.tscn\")
+
+
+func _on_enemy_checker_body_entered(body: Node2D) -> void:
+	if body.is_in_group(\"enemy\"): 
+		print(\"Player hit an enemy!\")
+		GameManager.decrease_health(1)  
 "
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_yi3n0"]
@@ -251,7 +257,10 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7vi0y"]
-size = Vector2(24, 34)
+size = Vector2(24, 29)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rob5w"]
+size = Vector2(28, 31)
 
 [node name="CharacterBody2D" type="CharacterBody2D" groups=["player"]]
 collision_layer = 3
@@ -265,5 +274,15 @@ scale = Vector2(1.15, 1.15)
 sprite_frames = SubResource("SpriteFrames_78bof")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(6, -4)
+position = Vector2(6, -1.5)
 shape = SubResource("RectangleShape2D_7vi0y")
+
+[node name="EnemyChecker" type="Area2D" parent="."]
+collision_layer = 33
+collision_mask = 17
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyChecker"]
+position = Vector2(6, -2.5)
+shape = SubResource("RectangleShape2D_rob5w")
+
+[connection signal="body_entered" from="EnemyChecker" to="." method="_on_enemy_checker_body_entered"]
