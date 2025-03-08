@@ -1,5 +1,6 @@
-[gd_scene load_steps=16 format=3 uid="uid://cldvlsalcs1bp"]
+[gd_scene load_steps=17 format=3 uid="uid://cldvlsalcs1bp"]
 
+[ext_resource type="Script" path="res://scenes/game_objects/bonus.gd" id="1_7e6a2"]
 [ext_resource type="Texture2D" uid="uid://cnetge3a4160g" path="res://assets/scene/Bananas.png" id="1_d81gb"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qcwmj"]
@@ -99,6 +100,10 @@ radius = 8.06226
 
 [node name="bonus1" type="Area2D"]
 scale = Vector2(1.4, 1.4)
+collision_layer = 4
+collision_mask = 2
+script = ExtResource("1_7e6a2")
+bonus_value = 100
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
@@ -108,3 +113,5 @@ frame_progress = 0.155022
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_r5ysg")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

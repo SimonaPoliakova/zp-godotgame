@@ -112,9 +112,10 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vwvkf"]
 size = Vector2(20, 14.2174)
 
-[node name="enemy" type="CharacterBody2D"]
+[node name="enemy" type="CharacterBody2D" groups=["enemy"]]
 scale = Vector2(2.1, 2.1)
 collision_layer = 6
+collision_mask = 9
 script = ExtResource("1_dp1p6")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." groups=["enemy"]]
