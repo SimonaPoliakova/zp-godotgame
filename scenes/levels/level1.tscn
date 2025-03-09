@@ -1,9 +1,20 @@
-[gd_scene load_steps=17 format=3 uid="uid://drge4gb2hwctx"]
+[gd_scene load_steps=22 format=3 uid="uid://drge4gb2hwctx"]
 
 [ext_resource type="Texture2D" uid="uid://q3hk7i4q8a07" path="res://assets/background/black.PNG" id="1_tmwbo"]
 [ext_resource type="Texture2D" uid="uid://ckkcion0yvuig" path="res://assets/scene/Terrain (16x16).png" id="2_ljc8b"]
+[ext_resource type="Script" path="res://scenes/levels/game_over_panel.gd" id="5_o4q4c"]
 [ext_resource type="PackedScene" uid="uid://1n8u2lmx4xea" path="res://scenes/characters/enemy.tscn" id="5_uwd31"]
 [ext_resource type="PackedScene" uid="uid://dekti528g6ebp" path="res://scenes/characters/player.tscn" id="5_vf0yc"]
+[ext_resource type="FontFile" uid="uid://btj6n4lkyrvnh" path="res://assets/font/pixelated-loveNew.ttf" id="6_hj6rj"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fmdrp"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="FontVariation" id="FontVariation_3de0y"]
+base_font = ExtResource("6_hj6rj")
+
+[sub_resource type="FontVariation" id="FontVariation_psu0k"]
+base_font = ExtResource("6_hj6rj")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_e35sg"]
 resource_name = "map"
@@ -336,6 +347,53 @@ size = Vector2(48, 24)
 
 [node name="Level 1" type="Node"]
 
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 2
+
+[node name="GameOverPanel" type="Panel" parent="CanvasLayer"]
+process_mode = 3
+visible = false
+z_index = 10
+offset_right = 1152.0
+offset_bottom = 648.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_fmdrp")
+script = ExtResource("5_o4q4c")
+
+[node name="MainMenuButton" type="Button" parent="CanvasLayer/GameOverPanel"]
+z_index = 11
+layout_mode = 0
+offset_left = 478.0
+offset_top = 337.0
+offset_right = 667.0
+offset_bottom = 386.0
+theme_override_fonts/font = SubResource("FontVariation_3de0y")
+theme_override_font_sizes/font_size = 30
+action_mode = 0
+text = "MAIN MENU"
+
+[node name="RestartButton" type="Button" parent="CanvasLayer/GameOverPanel"]
+z_index = 11
+layout_mode = 0
+offset_left = 478.0
+offset_top = 409.0
+offset_right = 667.0
+offset_bottom = 458.0
+theme_override_fonts/font = ExtResource("6_hj6rj")
+theme_override_font_sizes/font_size = 30
+text = "RESTART"
+
+[node name="GameOverText" type="Label" parent="CanvasLayer/GameOverPanel"]
+layout_mode = 0
+offset_left = 305.0
+offset_top = 166.0
+offset_right = 840.0
+offset_bottom = 300.0
+theme_override_fonts/font = SubResource("FontVariation_psu0k")
+theme_override_font_sizes/font_size = 70
+text = "Game Over!"
+horizontal_alignment = 1
+
 [node name="SceneObjects" type="Node" parent="."]
 
 [node name="TextureRect" type="TextureRect" parent="SceneObjects"]
@@ -406,30 +464,33 @@ one_way_collision = true
 position = Vector2(270, 551)
 scale = Vector2(1.5, 1.5)
 
-[node name="enemies" type="Node" parent="."]
+[node name="enemies" type="Node" parent="SceneObjects"]
 
-[node name="enemy" parent="enemies" instance=ExtResource("5_uwd31")]
+[node name="enemy" parent="SceneObjects/enemies" instance=ExtResource("5_uwd31")]
 position = Vector2(536, 551)
 
-[node name="enemy2" parent="enemies" instance=ExtResource("5_uwd31")]
+[node name="enemy2" parent="SceneObjects/enemies" instance=ExtResource("5_uwd31")]
 position = Vector2(419, 335)
 
-[node name="enemy3" parent="enemies" instance=ExtResource("5_uwd31")]
+[node name="enemy3" parent="SceneObjects/enemies" instance=ExtResource("5_uwd31")]
 position = Vector2(749, 242)
+
+[node name="PlatformSpawns" type="Node" parent="SceneObjects"]
+
+[node name="PlatformSpawn" type="Node2D" parent="SceneObjects/PlatformSpawns" groups=["platform_spawn"]]
+position = Vector2(576, 246)
+
+[node name="PlatformSpawn2" type="Node2D" parent="SceneObjects/PlatformSpawns" groups=["platform_spawn"]]
+position = Vector2(576, 342)
+
+[node name="PlatformSpawn3" type="Node2D" parent="SceneObjects/PlatformSpawns" groups=["platform_spawn"]]
+position = Vector2(576, 437)
+
+[node name="PlatformSpawn4" type="Node2D" parent="SceneObjects/PlatformSpawns" groups=["platform_spawn"]]
+position = Vector2(576, 557)
 
 [node name="BubbleStop" type="Node2D" parent="." groups=["bubble_stop"]]
 position = Vector2(576, 116)
 
-[node name="PlatformSpawns" type="Node" parent="."]
-
-[node name="PlatformSpawn" type="Node2D" parent="PlatformSpawns" groups=["platform_spawn"]]
-position = Vector2(576, 246)
-
-[node name="PlatformSpawn2" type="Node2D" parent="PlatformSpawns" groups=["platform_spawn"]]
-position = Vector2(576, 342)
-
-[node name="PlatformSpawn3" type="Node2D" parent="PlatformSpawns" groups=["platform_spawn"]]
-position = Vector2(576, 437)
-
-[node name="PlatformSpawn4" type="Node2D" parent="PlatformSpawns" groups=["platform_spawn"]]
-position = Vector2(576, 557)
+[connection signal="pressed" from="CanvasLayer/GameOverPanel/MainMenuButton" to="CanvasLayer/GameOverPanel" method="_on_main_menu_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/GameOverPanel/RestartButton" to="CanvasLayer/GameOverPanel" method="_on_restart_button_pressed"]

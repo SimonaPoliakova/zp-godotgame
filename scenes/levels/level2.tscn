@@ -1,9 +1,20 @@
-[gd_scene load_steps=15 format=3 uid="uid://bf3u37hxoa8td"]
+[gd_scene load_steps=20 format=3 uid="uid://bf3u37hxoa8td"]
 
 [ext_resource type="Texture2D" uid="uid://q3hk7i4q8a07" path="res://assets/background/black.PNG" id="1_dlorc"]
 [ext_resource type="Texture2D" uid="uid://ckkcion0yvuig" path="res://assets/scene/Terrain (16x16).png" id="2_hhsv2"]
 [ext_resource type="PackedScene" uid="uid://dekti528g6ebp" path="res://scenes/characters/player.tscn" id="3_f6ry8"]
 [ext_resource type="PackedScene" uid="uid://1n8u2lmx4xea" path="res://scenes/characters/enemy.tscn" id="4_ybih6"]
+[ext_resource type="Script" path="res://scenes/levels/game_over_panel.gd" id="5_vnbim"]
+[ext_resource type="FontFile" uid="uid://btj6n4lkyrvnh" path="res://assets/font/pixelated-loveNew.ttf" id="6_mpwxq"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8ibom"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="FontVariation" id="FontVariation_ueu3c"]
+base_font = ExtResource("6_mpwxq")
+
+[sub_resource type="FontVariation" id="FontVariation_gppop"]
+base_font = ExtResource("6_mpwxq")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_e35sg"]
 resource_name = "map"
@@ -331,7 +342,56 @@ size = Vector2(192, 16)
 
 [node name="Node" type="Node"]
 
-[node name="TextureRect" type="TextureRect" parent="."]
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 2
+
+[node name="GameOverPanel" type="Panel" parent="CanvasLayer"]
+process_mode = 3
+visible = false
+z_index = 10
+offset_right = 1152.0
+offset_bottom = 648.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_8ibom")
+script = ExtResource("5_vnbim")
+
+[node name="MainMenuButton" type="Button" parent="CanvasLayer/GameOverPanel"]
+z_index = 11
+layout_mode = 0
+offset_left = 478.0
+offset_top = 337.0
+offset_right = 667.0
+offset_bottom = 386.0
+theme_override_fonts/font = SubResource("FontVariation_ueu3c")
+theme_override_font_sizes/font_size = 30
+action_mode = 0
+text = "MAIN MENU"
+
+[node name="RestartButton" type="Button" parent="CanvasLayer/GameOverPanel"]
+z_index = 11
+layout_mode = 0
+offset_left = 478.0
+offset_top = 409.0
+offset_right = 667.0
+offset_bottom = 458.0
+theme_override_fonts/font = ExtResource("6_mpwxq")
+theme_override_font_sizes/font_size = 30
+text = "RESTART"
+
+[node name="GameOverText" type="Label" parent="CanvasLayer/GameOverPanel"]
+layout_mode = 0
+offset_left = 305.0
+offset_top = 166.0
+offset_right = 840.0
+offset_bottom = 300.0
+theme_override_fonts/font = SubResource("FontVariation_gppop")
+theme_override_font_sizes/font_size = 70
+text = "Game Over!"
+horizontal_alignment = 1
+
+[node name="SceneObjects" type="Node" parent="."]
+
+[node name="TextureRect" type="TextureRect" parent="SceneObjects"]
 texture_filter = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -341,86 +401,89 @@ grow_vertical = 2
 texture = ExtResource("1_dlorc")
 stretch_mode = 1
 
-[node name="TileMap" type="TileMap" parent="." groups=["walls"]]
+[node name="TileMap" type="TileMap" parent="SceneObjects" groups=["walls"]]
 texture_filter = 1
 scale = Vector2(1.5, 1.5)
 tile_set = SubResource("TileSet_j7f0c")
 format = 2
 layer_0/tile_data = PackedInt32Array(1572876, 786432, 5, 1572877, 786432, 5, 1572878, 786432, 5, 1572879, 786432, 5, 1572880, 786432, 5, 1572881, 786432, 5, 1572882, 786432, 5, 1572883, 786432, 5, 1572884, 786432, 5, 1572885, 786432, 5, 1572886, 786432, 5, 1572887, 786432, 5, 1572888, 786432, 5, 1572889, 786432, 5, 1572890, 786432, 5, 1572891, 786432, 5, 1572892, 786432, 5, 1572893, 786432, 5, 1572894, 786432, 5, 1572895, 786432, 5, 1572896, 786432, 5, 1572897, 786432, 5, 1572898, 786432, 5, 1572899, 786432, 5, 1572900, 786432, 5, 1572901, 786432, 5, 1572902, 786432, 5, 1572904, 786432, 5, 1572871, 786432, 5, 131079, 786432, 5, 131112, 786432, 5, 131111, 786432, 5, 131080, 786432, 5, 1572872, 786432, 5, 1572873, 786432, 5, 1572874, 786432, 5, 1572875, 786432, 5, 1572903, 786432, 5, 196615, 786432, 5, 262151, 786432, 5, 327687, 786432, 5, 393223, 786432, 5, 458759, 786432, 5, 524295, 786432, 5, 589831, 786432, 5, 655367, 786432, 5, 720903, 786432, 5, 786439, 786432, 5, 851975, 786432, 5, 917511, 786432, 5, 983047, 786432, 5, 1048583, 786432, 5, 1114119, 786432, 5, 1179655, 786432, 5, 1245191, 786432, 5, 1310727, 786432, 5, 1376263, 786432, 5, 1441799, 786432, 5, 1507335, 786432, 5, 196648, 786432, 5, 262184, 786432, 5, 327720, 786432, 5, 393256, 786432, 5, 458792, 786432, 5, 524328, 786432, 5, 589864, 786432, 5, 655400, 786432, 5, 720936, 786432, 5, 786472, 786432, 5, 852008, 786432, 5, 917544, 786432, 5, 983080, 786432, 5, 1048616, 786432, 5, 1114152, 786432, 5, 1179688, 786432, 5, 1245224, 786432, 5, 1310760, 786432, 5, 1376296, 786432, 5, 1441832, 786432, 5, 1507368, 786432, 5, 196616, 786432, 5, 262152, 786432, 5, 327688, 786432, 5, 393224, 786432, 5, 458760, 786432, 5, 524296, 786432, 5, 589832, 786432, 5, 655368, 786432, 5, 720904, 786432, 5, 786440, 786432, 5, 851976, 786432, 5, 917512, 786432, 5, 983048, 786432, 5, 1048584, 786432, 5, 1114120, 786432, 5, 1179656, 786432, 5, 1310728, 786432, 5, 1376264, 786432, 5, 1441800, 786432, 5, 1507336, 786432, 5, 196647, 786432, 5, 262183, 786432, 5, 327719, 786432, 5, 393255, 786432, 5, 458791, 786432, 5, 524327, 786432, 5, 589863, 786432, 5, 655399, 786432, 5, 720935, 786432, 5, 786471, 786432, 5, 852007, 786432, 5, 917543, 786432, 5, 983079, 786432, 5, 1048615, 786432, 5, 1114151, 786432, 5, 1179687, 786432, 5, 1245223, 786432, 5, 1310759, 786432, 5, 1376295, 786432, 5, 1441831, 786432, 5, 1507367, 786432, 5, 1245192, 786432, 5, 1245196, 786432, 4, 1245213, 786432, 4, 1245202, 917504, 4, 1245219, 917504, 4, 1245197, 851968, 4, 1245198, 851968, 4, 1245199, 851968, 4, 1245200, 851968, 4, 1245201, 851968, 4, 1245214, 851968, 4, 1245215, 851968, 4, 1245216, 851968, 4, 1245217, 851968, 4, 1245218, 851968, 4, 1245205, 786432, 4, 1245210, 917504, 4, 1245206, 851968, 4, 1245207, 851968, 4, 1245208, 851968, 4, 1245209, 851968, 4, 983054, 786432, 4, 983073, 917504, 4, 983072, 851968, 4, 983071, 851968, 4, 983070, 851968, 4, 983069, 851968, 4, 983068, 851968, 4, 983067, 851968, 4, 983066, 851968, 4, 983065, 851968, 4, 983064, 851968, 4, 983063, 851968, 4, 983062, 851968, 4, 983061, 851968, 4, 983060, 851968, 4, 983059, 851968, 4, 983058, 851968, 4, 983057, 851968, 4, 983056, 851968, 4, 983055, 851968, 4, 720918, 917504, 4, 720912, 786432, 4, 720921, 786432, 4, 720927, 917504, 4, 720926, 851968, 4, 720925, 851968, 4, 720924, 851968, 4, 720923, 851968, 4, 720922, 851968, 4, 720917, 851968, 4, 720916, 851968, 4, 720915, 851968, 4, 720914, 851968, 4, 720913, 851968, 4, 458770, 786432, 4, 458781, 917504, 4, 458780, 851968, 4, 458779, 851968, 4, 458778, 851968, 4, 458777, 851968, 4, 458776, 851968, 4, 458775, 851968, 4, 458774, 851968, 4, 458773, 851968, 4, 458772, 851968, 4, 458771, 851968, 4, 131081, 786435, 5, 131082, 786435, 5, 131083, 786435, 5, 131084, 786435, 5, 131085, 786435, 5, 131086, 786435, 5, 131087, 786435, 5, 131088, 786435, 5, 131089, 786435, 5, 131090, 786435, 5, 131091, 786435, 5, 131092, 786435, 5, 131093, 786435, 5, 131094, 786435, 5, 131097, 786435, 5, 131098, 786435, 5, 131099, 786435, 5, 131100, 786435, 5, 131101, 786435, 5, 131102, 786435, 5, 131103, 786435, 5, 131104, 786435, 5, 131105, 786435, 5, 131106, 786435, 5, 131107, 786435, 5, 131108, 786435, 5, 131109, 786435, 5, 131110, 786435, 5)
 
-[node name="platform_jump" type="StaticBody2D" parent="."]
+[node name="platform_jump" type="StaticBody2D" parent="SceneObjects"]
 position = Vector2(253, 546)
 scale = Vector2(1.5, 1.5)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="platform_jump"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SceneObjects/platform_jump"]
 position = Vector2(79.3333, -52)
 shape = SubResource("RectangleShape2D_0ad07")
 one_way_collision = true
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="platform_jump"]
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="SceneObjects/platform_jump"]
 position = Vector2(215.333, -52)
 shape = SubResource("RectangleShape2D_ha6px")
 one_way_collision = true
 
-[node name="CollisionShape2D3" type="CollisionShape2D" parent="platform_jump"]
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="SceneObjects/platform_jump"]
 position = Vector2(351.333, -52)
 shape = SubResource("RectangleShape2D_m5dxk")
 one_way_collision = true
 
-[node name="CollisionShape2D4" type="CollisionShape2D" parent="platform_jump"]
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="SceneObjects/platform_jump"]
 position = Vector2(215.333, -116)
 shape = SubResource("RectangleShape2D_jo5bv")
 one_way_collision = true
 
-[node name="CollisionShape2D5" type="CollisionShape2D" parent="platform_jump"]
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="SceneObjects/platform_jump"]
 position = Vector2(143.333, -180)
 shape = SubResource("RectangleShape2D_exfso")
 one_way_collision = true
 
-[node name="CollisionShape2D6" type="CollisionShape2D" parent="platform_jump"]
+[node name="CollisionShape2D6" type="CollisionShape2D" parent="SceneObjects/platform_jump"]
 position = Vector2(287.333, -180)
 shape = SubResource("RectangleShape2D_oi2pr")
 one_way_collision = true
 
-[node name="CollisionShape2D7" type="CollisionShape2D" parent="platform_jump"]
+[node name="CollisionShape2D7" type="CollisionShape2D" parent="SceneObjects/platform_jump"]
 position = Vector2(215.333, -244)
 shape = SubResource("RectangleShape2D_upea7")
 one_way_collision = true
 
-[node name="PlatformSpawns" type="Node" parent="."]
+[node name="PlatformSpawns" type="Node" parent="SceneObjects"]
 
-[node name="PlatformSpawn" type="Node2D" parent="PlatformSpawns" groups=["platform_spawn"]]
+[node name="PlatformSpawn" type="Node2D" parent="SceneObjects/PlatformSpawns" groups=["platform_spawn"]]
 position = Vector2(576, 146)
 
-[node name="PlatformSpawn2" type="Node2D" parent="PlatformSpawns" groups=["platform_spawn"]]
+[node name="PlatformSpawn2" type="Node2D" parent="SceneObjects/PlatformSpawns" groups=["platform_spawn"]]
 position = Vector2(576, 240)
 
-[node name="PlatformSpawn3" type="Node2D" parent="PlatformSpawns" groups=["platform_spawn"]]
+[node name="PlatformSpawn3" type="Node2D" parent="SceneObjects/PlatformSpawns" groups=["platform_spawn"]]
 position = Vector2(576, 337)
 
-[node name="PlatformSpawn4" type="Node2D" parent="PlatformSpawns" groups=["platform_spawn"]]
+[node name="PlatformSpawn4" type="Node2D" parent="SceneObjects/PlatformSpawns" groups=["platform_spawn"]]
 position = Vector2(576, 436)
 
-[node name="PlatformSpawn5" type="Node2D" parent="PlatformSpawns" groups=["platform_spawn"]]
+[node name="PlatformSpawn5" type="Node2D" parent="SceneObjects/PlatformSpawns" groups=["platform_spawn"]]
 position = Vector2(578, 556)
 
-[node name="Player" parent="." instance=ExtResource("3_f6ry8")]
+[node name="Player" parent="SceneObjects" instance=ExtResource("3_f6ry8")]
 position = Vector2(270, 551)
 scale = Vector2(1.5, 1.5)
 
-[node name="enemies" type="Node" parent="."]
+[node name="enemies" type="Node" parent="SceneObjects"]
 
-[node name="enemy" parent="enemies" instance=ExtResource("4_ybih6")]
+[node name="enemy" parent="SceneObjects/enemies" instance=ExtResource("4_ybih6")]
 position = Vector2(536, 557)
 
-[node name="enemy2" parent="enemies" instance=ExtResource("4_ybih6")]
+[node name="enemy2" parent="SceneObjects/enemies" instance=ExtResource("4_ybih6")]
 position = Vector2(419, 340)
 
-[node name="enemy3" parent="enemies" instance=ExtResource("4_ybih6")]
+[node name="enemy3" parent="SceneObjects/enemies" instance=ExtResource("4_ybih6")]
 position = Vector2(749, 244)
 
-[node name="enemy4" parent="enemies" instance=ExtResource("4_ybih6")]
+[node name="enemy4" parent="SceneObjects/enemies" instance=ExtResource("4_ybih6")]
 position = Vector2(769, 436)
 
-[node name="BubbleStop" type="Node2D" parent="." groups=["bubble_stop"]]
+[node name="BubbleStop" type="Node2D" parent="SceneObjects" groups=["bubble_stop"]]
 position = Vector2(576, 98)
+
+[connection signal="pressed" from="CanvasLayer/GameOverPanel/MainMenuButton" to="CanvasLayer/GameOverPanel" method="_on_main_menu_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/GameOverPanel/RestartButton" to="CanvasLayer/GameOverPanel" method="_on_restart_button_pressed"]
