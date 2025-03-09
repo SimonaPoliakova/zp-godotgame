@@ -1,11 +1,13 @@
-[gd_scene load_steps=22 format=3 uid="uid://drge4gb2hwctx"]
+[gd_scene load_steps=24 format=3 uid="uid://drge4gb2hwctx"]
 
+[ext_resource type="Script" path="res://scripts/level.gd" id="1_4qtpp"]
 [ext_resource type="Texture2D" uid="uid://q3hk7i4q8a07" path="res://assets/background/black.PNG" id="1_tmwbo"]
 [ext_resource type="Texture2D" uid="uid://ckkcion0yvuig" path="res://assets/scene/Terrain (16x16).png" id="2_ljc8b"]
-[ext_resource type="Script" path="res://scenes/levels/game_over_panel.gd" id="5_o4q4c"]
+[ext_resource type="Script" path="res://scripts/game_over_panel.gd" id="5_o4q4c"]
 [ext_resource type="PackedScene" uid="uid://1n8u2lmx4xea" path="res://scenes/characters/enemy.tscn" id="5_uwd31"]
 [ext_resource type="PackedScene" uid="uid://dekti528g6ebp" path="res://scenes/characters/player.tscn" id="5_vf0yc"]
 [ext_resource type="FontFile" uid="uid://btj6n4lkyrvnh" path="res://assets/font/pixelated-loveNew.ttf" id="6_hj6rj"]
+[ext_resource type="PackedScene" uid="uid://itoh3l6i5gv6" path="res://scenes/GameUI.tscn" id="7_e5cxt"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fmdrp"]
 bg_color = Color(0, 0, 0, 1)
@@ -346,6 +348,7 @@ size = Vector2(48, 24)
 size = Vector2(48, 24)
 
 [node name="Level 1" type="Node"]
+script = ExtResource("1_4qtpp")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = 2
@@ -489,8 +492,10 @@ position = Vector2(576, 437)
 [node name="PlatformSpawn4" type="Node2D" parent="SceneObjects/PlatformSpawns" groups=["platform_spawn"]]
 position = Vector2(576, 557)
 
-[node name="BubbleStop" type="Node2D" parent="." groups=["bubble_stop"]]
+[node name="BubbleStop" type="Node2D" parent="SceneObjects" groups=["bubble_stop"]]
 position = Vector2(576, 116)
+
+[node name="GameUI" parent="." instance=ExtResource("7_e5cxt")]
 
 [connection signal="pressed" from="CanvasLayer/GameOverPanel/MainMenuButton" to="CanvasLayer/GameOverPanel" method="_on_main_menu_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/GameOverPanel/RestartButton" to="CanvasLayer/GameOverPanel" method="_on_restart_button_pressed"]

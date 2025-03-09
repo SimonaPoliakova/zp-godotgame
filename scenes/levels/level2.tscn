@@ -1,11 +1,13 @@
-[gd_scene load_steps=20 format=3 uid="uid://bf3u37hxoa8td"]
+[gd_scene load_steps=22 format=3 uid="uid://cjpeixvbs668c"]
 
 [ext_resource type="Texture2D" uid="uid://q3hk7i4q8a07" path="res://assets/background/black.PNG" id="1_dlorc"]
+[ext_resource type="Script" path="res://scripts/level.gd" id="1_iygr2"]
 [ext_resource type="Texture2D" uid="uid://ckkcion0yvuig" path="res://assets/scene/Terrain (16x16).png" id="2_hhsv2"]
 [ext_resource type="PackedScene" uid="uid://dekti528g6ebp" path="res://scenes/characters/player.tscn" id="3_f6ry8"]
 [ext_resource type="PackedScene" uid="uid://1n8u2lmx4xea" path="res://scenes/characters/enemy.tscn" id="4_ybih6"]
-[ext_resource type="Script" path="res://scenes/levels/game_over_panel.gd" id="5_vnbim"]
+[ext_resource type="Script" path="res://scripts/game_over_panel.gd" id="5_vnbim"]
 [ext_resource type="FontFile" uid="uid://btj6n4lkyrvnh" path="res://assets/font/pixelated-loveNew.ttf" id="6_mpwxq"]
+[ext_resource type="PackedScene" uid="uid://itoh3l6i5gv6" path="res://scenes/GameUI.tscn" id="7_wcr3b"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8ibom"]
 bg_color = Color(0, 0, 0, 1)
@@ -340,7 +342,8 @@ size = Vector2(112, 16)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_upea7"]
 size = Vector2(192, 16)
 
-[node name="Node" type="Node"]
+[node name="Level 2" type="Node"]
+script = ExtResource("1_iygr2")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = 2
@@ -484,6 +487,12 @@ position = Vector2(769, 436)
 
 [node name="BubbleStop" type="Node2D" parent="SceneObjects" groups=["bubble_stop"]]
 position = Vector2(576, 98)
+
+[node name="GameUI" parent="." instance=ExtResource("7_wcr3b")]
+offset_left = 1.0
+offset_top = 1.0
+offset_right = 1.0
+offset_bottom = 1.0
 
 [connection signal="pressed" from="CanvasLayer/GameOverPanel/MainMenuButton" to="CanvasLayer/GameOverPanel" method="_on_main_menu_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/GameOverPanel/RestartButton" to="CanvasLayer/GameOverPanel" method="_on_restart_button_pressed"]

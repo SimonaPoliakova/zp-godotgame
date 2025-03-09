@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://dctmpa4qowm6"]
 
 [ext_resource type="Texture2D" uid="uid://d207lg7r1pfkd" path="res://assets/scene/bubble_trapped.png" id="1_32pf2"]
-[ext_resource type="Script" path="res://scenes/game_objects/bubble_trapped.gd" id="1_yquxw"]
+[ext_resource type="Script" path="res://scripts/bubble_trapped.gd" id="1_yquxw"]
 [ext_resource type="PackedScene" uid="uid://cldvlsalcs1bp" path="res://scenes/game_objects/bonus_1.tscn" id="2_xr12c"]
 [ext_resource type="PackedScene" uid="uid://cnjueakirl3c7" path="res://scenes/game_objects/bonus_2.tscn" id="3_bufoi"]
 [ext_resource type="PackedScene" uid="uid://sh6bdmag88gr" path="res://scenes/game_objects/bonus_3.tscn" id="4_rjm84"]
@@ -9,7 +9,7 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_pkofx"]
 radius = 72.0
 
-[node name="CharacterBody2D" type="Area2D"]
+[node name="CharacterBody2D" type="Area2D" groups=["trapped_enemy"]]
 scale = Vector2(0.25, 0.25)
 collision_layer = 4
 script = ExtResource("1_yquxw")

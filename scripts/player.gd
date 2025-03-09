@@ -58,4 +58,4 @@ func _on_AnimatedSprite_animation_finished():
 
 func _on_Enemy_checker_body_entered(body):
 	if body.is_in_group("enemy"):
-		GameManager.decrease_health(1)  # Reduce health by 1
+		GameManager.decrease_health(1)  

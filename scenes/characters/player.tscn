@@ -15,7 +15,10 @@ var jump = -530
 
 var bubble_speed = 270
 
+var starting_position: Vector2  
+
 func _ready():
+	starting_position = global_position
 	$AnimatedSprite2D.play(\"default\")  
 
 func _physics_process(delta):
@@ -64,14 +67,13 @@ func _on_AnimatedSprite_animation_finished():
 	if $AnimatedSprite2D.animation == \"shoot\":  
 		$AnimatedSprite2D.play(\"default\")  
 
-func _on_Enemy_checker_body_entered(body):
-	get_tree().change_scene(\"res://scenes/game_objects/bubble.tscn\")
-
-
 func _on_enemy_checker_body_entered(body: Node2D) -> void:
 	if body.is_in_group(\"enemy\"): 
 		print(\"Player hit an enemy!\")
-		GameManager.decrease_health(1)  
+		GameManager.decrease_health(1)
+		global_position = starting_position
+
+		
 "
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_yi3n0"]
@@ -260,7 +262,7 @@ animations = [{
 size = Vector2(24, 29)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rob5w"]
-size = Vector2(28, 31)
+size = Vector2(28, 33)
 
 [node name="CharacterBody2D" type="CharacterBody2D" groups=["player"]]
 collision_layer = 3
@@ -282,7 +284,7 @@ collision_layer = 33
 collision_mask = 17
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyChecker"]
-position = Vector2(6, -2.5)
+position = Vector2(6, -1.5)
 shape = SubResource("RectangleShape2D_rob5w")
 
 [connection signal="body_entered" from="EnemyChecker" to="." method="_on_enemy_checker_body_entered"]

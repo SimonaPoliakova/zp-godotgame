@@ -1,7 +1,7 @@
 [gd_scene load_steps=17 format=3 uid="uid://cnjueakirl3c7"]
 
 [ext_resource type="Texture2D" uid="uid://bjj8i1ususg8o" path="res://assets/scene/Cherries.png" id="1_6ir0h"]
-[ext_resource type="Script" path="res://scenes/game_objects/bonus.gd" id="1_8pdcf"]
+[ext_resource type="Script" path="res://scripts/bonus.gd" id="1_8pdcf"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2cw3a"]
 atlas = ExtResource("1_6ir0h")
@@ -98,7 +98,7 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_1fvua"]
 radius = 8.0
 
-[node name="bonus2" type="Area2D"]
+[node name="bonus2" type="Area2D" groups=["bonus"]]
 collision_layer = 4
 collision_mask = 2
 script = ExtResource("1_8pdcf")
