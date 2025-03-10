@@ -1,3 +1,72 @@
-[gd_scene format=3 uid="uid://b7tn7rsc5iqd1"]
+[gd_scene load_steps=6 format=3 uid="uid://datpt5jrjdb5k"]
 
-[node name="Node2D" type="Node2D"]
+[ext_resource type="Script" path="res://scripts/main_menu.gd" id="1_cnuu1"]
+[ext_resource type="FontFile" uid="uid://btj6n4lkyrvnh" path="res://assets/font/pixelated-loveNew.ttf" id="2_lksvq"]
+[ext_resource type="Texture2D" uid="uid://q3hk7i4q8a07" path="res://assets/background/black.PNG" id="3_0hsdm"]
+
+[sub_resource type="FontVariation" id="FontVariation_rmufx"]
+base_font = ExtResource("2_lksvq")
+
+[sub_resource type="FontVariation" id="FontVariation_mlis3"]
+base_font = ExtResource("2_lksvq")
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 3
+
+[node name="Panel" type="Panel" parent="CanvasLayer"]
+offset_right = 1158.0
+offset_bottom = 652.0
+mouse_filter = 2
+script = ExtResource("1_cnuu1")
+
+[node name="StartButton" type="Button" parent="CanvasLayer/Panel"]
+z_index = 12
+layout_mode = 0
+offset_left = 478.0
+offset_top = 329.0
+offset_right = 667.0
+offset_bottom = 378.0
+theme_override_fonts/font = SubResource("FontVariation_rmufx")
+theme_override_font_sizes/font_size = 30
+action_mode = 0
+text = "START"
+
+[node name="ExitButton" type="Button" parent="CanvasLayer/Panel"]
+z_index = 11
+layout_mode = 0
+offset_left = 476.0
+offset_top = 410.0
+offset_right = 665.0
+offset_bottom = 459.0
+theme_override_fonts/font = SubResource("FontVariation_rmufx")
+theme_override_font_sizes/font_size = 30
+action_mode = 0
+text = "EXIT"
+
+[node name="GameOverText" type="Label" parent="CanvasLayer/Panel"]
+layout_mode = 0
+offset_left = 305.0
+offset_top = 166.0
+offset_right = 840.0
+offset_bottom = 300.0
+theme_override_fonts/font = SubResource("FontVariation_mlis3")
+theme_override_font_sizes/font_size = 70
+text = "BUBBLE BOBBLE"
+horizontal_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 1168.0
+offset_bottom = 661.0
+texture = ExtResource("3_0hsdm")
+
+[connection signal="pressed" from="CanvasLayer/Panel/StartButton" to="CanvasLayer/Panel" method="_on_start_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/Panel/ExitButton" to="CanvasLayer/Panel" method="_on_exit_button_pressed"]

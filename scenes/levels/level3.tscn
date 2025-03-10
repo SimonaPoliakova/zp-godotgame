@@ -1,9 +1,10 @@
-[gd_scene load_steps=25 format=3 uid="uid://ccw6edl2cw3y2"]
+[gd_scene load_steps=29 format=3 uid="uid://ccw6edl2cw3y2"]
 
 [ext_resource type="Texture2D" uid="uid://q3hk7i4q8a07" path="res://assets/background/black.PNG" id="1_b6i7g"]
 [ext_resource type="Script" path="res://scripts/level.gd" id="1_gg6dn"]
 [ext_resource type="Texture2D" uid="uid://ckkcion0yvuig" path="res://assets/scene/Terrain (16x16).png" id="2_i2yca"]
 [ext_resource type="PackedScene" uid="uid://dekti528g6ebp" path="res://scenes/characters/player.tscn" id="3_p1fb1"]
+[ext_resource type="Script" path="res://scenes/victory_panel.gd" id="4_cbf5l"]
 [ext_resource type="PackedScene" uid="uid://1n8u2lmx4xea" path="res://scenes/characters/enemy.tscn" id="4_x0q7m"]
 [ext_resource type="Script" path="res://scripts/game_over_panel.gd" id="5_0iqxo"]
 [ext_resource type="FontFile" uid="uid://btj6n4lkyrvnh" path="res://assets/font/pixelated-loveNew.ttf" id="6_0l1b0"]
@@ -16,6 +17,15 @@ bg_color = Color(0, 0, 0, 1)
 base_font = ExtResource("6_0l1b0")
 
 [sub_resource type="FontVariation" id="FontVariation_km87n"]
+base_font = ExtResource("6_0l1b0")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ae6e8"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="FontVariation" id="FontVariation_cujse"]
+base_font = ExtResource("6_0l1b0")
+
+[sub_resource type="FontVariation" id="FontVariation_mkbdi"]
 base_font = ExtResource("6_0l1b0")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_e35sg"]
@@ -402,6 +412,39 @@ theme_override_font_sizes/font_size = 70
 text = "Game Over!"
 horizontal_alignment = 1
 
+[node name="VictoryPanel" type="Panel" parent="CanvasLayer"]
+process_mode = 3
+visible = false
+z_index = 10
+offset_right = 1152.0
+offset_bottom = 648.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_ae6e8")
+script = ExtResource("4_cbf5l")
+
+[node name="MainMenuButton" type="Button" parent="CanvasLayer/VictoryPanel"]
+z_index = 11
+layout_mode = 0
+offset_left = 478.0
+offset_top = 373.0
+offset_right = 667.0
+offset_bottom = 422.0
+theme_override_fonts/font = SubResource("FontVariation_cujse")
+theme_override_font_sizes/font_size = 30
+action_mode = 0
+text = "MAIN MENU"
+
+[node name="VictoryText" type="Label" parent="CanvasLayer/VictoryPanel"]
+layout_mode = 0
+offset_left = 305.0
+offset_top = 166.0
+offset_right = 840.0
+offset_bottom = 300.0
+theme_override_fonts/font = SubResource("FontVariation_mkbdi")
+theme_override_font_sizes/font_size = 70
+text = "Victory!"
+horizontal_alignment = 1
+
 [node name="SceneObjects" type="Node" parent="."]
 
 [node name="TextureRect" type="TextureRect" parent="SceneObjects"]
@@ -520,3 +563,4 @@ position = Vector2(410, 148)
 
 [connection signal="pressed" from="CanvasLayer/GameOverPanel/MainMenuButton" to="CanvasLayer/GameOverPanel" method="_on_main_menu_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/GameOverPanel/RestartButton" to="CanvasLayer/GameOverPanel" method="_on_restart_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/VictoryPanel/MainMenuButton" to="CanvasLayer/VictoryPanel" method="_on_main_menu_button_pressed"]
