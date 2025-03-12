@@ -1,3 +1,47 @@
-[gd_scene format=3 uid="uid://blkbm5l8fsf15"]
+[gd_scene load_steps=5 format=3 uid="uid://blkbm5l8fsf15"]
 
-[node name="starting_screen" type="Node2D"]
+[ext_resource type="Script" path="res://scripts/StartTextEffect.gd" id="1_1qiqy"]
+[ext_resource type="Texture2D" uid="uid://q3hk7i4q8a07" path="res://assets/background/black.PNG" id="2_k0hnx"]
+[ext_resource type="FontFile" uid="uid://btj6n4lkyrvnh" path="res://assets/font/pixelated-loveNew.ttf" id="2_l0g1q"]
+
+[sub_resource type="FontVariation" id="FontVariation_b08ls"]
+base_font = ExtResource("2_l0g1q")
+
+[node name="StartingScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_1qiqy")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="TextLabel" type="Label" parent="CanvasLayer"]
+offset_left = 212.0
+offset_top = 213.0
+offset_right = 953.0
+offset_bottom = 342.0
+theme_override_fonts/font = SubResource("FontVariation_b08ls")
+theme_override_font_sizes/font_size = 30
+text = "NOW IT IS THE BEGINNING OF A FANTASTIC STORY!
+LET'S MAKE A JOURNEY TO THE CAVE OF MONSTERS!
+GOOD LUCK!"
+horizontal_alignment = 1
+
+[node name="PromptLabel" type="Label" parent="CanvasLayer"]
+offset_left = 1.0
+offset_top = 398.0
+offset_right = 1153.0
+offset_bottom = 439.0
+theme_override_fonts/font = ExtResource("2_l0g1q")
+theme_override_font_sizes/font_size = 30
+text = "(Press Any Key to Start)
+"
+horizontal_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 1157.0
+offset_bottom = 653.0
+texture = ExtResource("2_k0hnx")
+stretch_mode = 1

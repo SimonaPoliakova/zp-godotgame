@@ -15,7 +15,7 @@ func update_ui():
 	var game_ui = get_tree().current_scene.get_node_or_null("GameUI")
 	if game_ui:
 		var score_label = game_ui.get_node_or_null("ScoreLabel")
-		var health_label = game_ui.get_node_or_null("HealthLabel")
+		var health_label = game_ui.get_node_or_null("HesalthLabel")
 
 		if score_label:
 			score_label.text = str(GameData.score)
@@ -38,17 +38,26 @@ func add_score(amount: int):
 	update_ui()
 
 func check_level_completion():
-	# Skip level completion check in the Main Menu
-	if get_tree().current_scene != null and get_tree().current_scene.name == "MainMenu":
-		return  # Skip level completion check in the MainMenu
-	
-	# Your normal logic for checking level completion
+	if get_tree().current_scene == null:
+		return
+
+	var current_scene_name = get_tree().current_scene.name
+	print("Checking level completion in:", current_scene_name)
+
+	if current_scene_name == "MainMenu" or current_scene_name == "StartingScreen":
+		print("Skipping level completion check in:", current_scene_name)
+		return
+
 	var no_enemies_left = get_tree().get_nodes_in_group("enemy").is_empty()
 	var no_bonuses_left = get_tree().get_nodes_in_group("bonus").is_empty()
 	var no_trapped_enemies_left = get_tree().get_nodes_in_group("trapped_enemy").is_empty()
 
-	# If all groups are empty, load next level
+	print("No enemies left:", no_enemies_left)
+	print("No bonuses left:", no_bonuses_left)
+	print("No trapped enemies left:", no_trapped_enemies_left)
+
 	if no_enemies_left and no_bonuses_left and no_trapped_enemies_left and not is_loading_next_level:
+		print("All conditions met, loading next level.")
 		is_loading_next_level = true
 		load_next_level()
 
@@ -61,24 +70,22 @@ func load_next_level():
 		GameData.player_health = 3 
 		is_loading_next_level = false
 
-		# Defer the scene change to avoid issues with adding/removing children
 		get_tree().call_deferred("change_scene_to_file", next_scene_name)
 
 	else:
 		show_victory_panel()  
 
 func show_victory_panel():
+	is_loading_next_level = false 
+	GameData.score = 0
+	GameData.player_health = 3
+	GameData.level = 1 
+	
 	var canvas_layer = get_tree().current_scene.get_node_or_null("CanvasLayer")
 	if canvas_layer:
 		var victory_panel = canvas_layer.get_node_or_null("VictoryPanel")
 		if victory_panel:
 			victory_panel.show_panel()
-
-	# Reset GameData after completing all levels
-	GameData.score = 0
-	GameData.player_health = 3
-	GameData.level = 1  # Reset level to 1 after victory
-
 
 
 func finish_game():

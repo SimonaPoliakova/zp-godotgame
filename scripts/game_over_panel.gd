@@ -21,7 +21,7 @@ func _on_main_menu_button_pressed():
 func _on_restart_button_pressed():
 	GameData.score = 0
 	GameData.player_health = 3  
-	GameData.level = 0  
+	GameData.level = 1
 
 	hide_panel()  
 

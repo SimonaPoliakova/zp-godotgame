@@ -51,6 +51,13 @@ theme_override_font_sizes/font_size = 30
 action_mode = 0
 text = "EXIT"
 
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Panel"]
+layout_mode = 0
+offset_right = 1168.0
+offset_bottom = 661.0
+mouse_filter = 2
+texture = ExtResource("3_0hsdm")
+
 [node name="GameOverText" type="Label" parent="CanvasLayer/Panel"]
 layout_mode = 0
 offset_left = 305.0
@@ -61,12 +68,6 @@ theme_override_fonts/font = SubResource("FontVariation_mlis3")
 theme_override_font_sizes/font_size = 70
 text = "BUBBLE BOBBLE"
 horizontal_alignment = 1
-
-[node name="TextureRect" type="TextureRect" parent="."]
-layout_mode = 0
-offset_right = 1168.0
-offset_bottom = 661.0
-texture = ExtResource("3_0hsdm")
 
 [connection signal="pressed" from="CanvasLayer/Panel/StartButton" to="CanvasLayer/Panel" method="_on_start_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/Panel/ExitButton" to="CanvasLayer/Panel" method="_on_exit_button_pressed"]

@@ -1,0 +1,48 @@
+[gd_scene load_steps=6 format=3 uid="uid://sglj3lpad6w0"]
+
+[ext_resource type="Script" path="res://scenes/victory_panel.gd" id="1_u3qvt"]
+[ext_resource type="FontFile" uid="uid://btj6n4lkyrvnh" path="res://assets/font/pixelated-loveNew.ttf" id="2_op5ma"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ae6e8"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="FontVariation" id="FontVariation_cujse"]
+base_font = ExtResource("2_op5ma")
+
+[sub_resource type="FontVariation" id="FontVariation_mkbdi"]
+base_font = ExtResource("2_op5ma")
+
+[node name="VictoryPanel" type="Panel"]
+process_mode = 3
+visible = false
+z_index = 10
+offset_right = 1152.0
+offset_bottom = 648.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_ae6e8")
+script = ExtResource("1_u3qvt")
+
+[node name="MainMenuButton" type="Button" parent="."]
+z_index = 11
+layout_mode = 0
+offset_left = 478.0
+offset_top = 373.0
+offset_right = 667.0
+offset_bottom = 422.0
+theme_override_fonts/font = SubResource("FontVariation_cujse")
+theme_override_font_sizes/font_size = 30
+action_mode = 0
+text = "MAIN MENU"
+
+[node name="VictoryText" type="Label" parent="."]
+layout_mode = 0
+offset_left = 305.0
+offset_top = 166.0
+offset_right = 840.0
+offset_bottom = 300.0
+theme_override_fonts/font = SubResource("FontVariation_mkbdi")
+theme_override_font_sizes/font_size = 70
+text = "Victory!"
+horizontal_alignment = 1
+
+[connection signal="pressed" from="MainMenuButton" to="." method="_on_main_menu_button_pressed"]
