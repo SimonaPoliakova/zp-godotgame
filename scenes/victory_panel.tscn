@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://sglj3lpad6w0"]
+[gd_scene load_steps=7 format=3 uid="uid://sglj3lpad6w0"]
 
 [ext_resource type="Script" path="res://scenes/victory_panel.gd" id="1_u3qvt"]
 [ext_resource type="FontFile" uid="uid://btj6n4lkyrvnh" path="res://assets/font/pixelated-loveNew.ttf" id="2_op5ma"]
+[ext_resource type="AudioStream" uid="uid://dowalyopba0hc" path="res://assets/audio/confirm.mp3" id="3_5kbbm"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ae6e8"]
 bg_color = Color(0, 0, 0, 1)
@@ -44,5 +45,8 @@ theme_override_fonts/font = SubResource("FontVariation_mkbdi")
 theme_override_font_sizes/font_size = 70
 text = "Victory!"
 horizontal_alignment = 1
+
+[node name="ConfirmSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_5kbbm")
 
 [connection signal="pressed" from="MainMenuButton" to="." method="_on_main_menu_button_pressed"]

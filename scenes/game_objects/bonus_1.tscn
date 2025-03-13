@@ -1,7 +1,8 @@
-[gd_scene load_steps=17 format=3 uid="uid://cldvlsalcs1bp"]
+[gd_scene load_steps=18 format=3 uid="uid://cldvlsalcs1bp"]
 
 [ext_resource type="Script" path="res://scripts/bonus.gd" id="1_7e6a2"]
 [ext_resource type="Texture2D" uid="uid://cnetge3a4160g" path="res://assets/scene/Bananas.png" id="1_d81gb"]
+[ext_resource type="AudioStream" uid="uid://b4o4vhxfhq540" path="res://assets/audio/bonus.mp3" id="3_1cvwq"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qcwmj"]
 atlas = ExtResource("1_d81gb")
@@ -113,5 +114,8 @@ frame_progress = 0.155022
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_r5ysg")
+
+[node name="CollectedSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_1cvwq")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

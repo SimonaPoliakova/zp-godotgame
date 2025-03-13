@@ -15,12 +15,15 @@ func update_ui():
 	var game_ui = get_tree().current_scene.get_node_or_null("GameUI")
 	if game_ui:
 		var score_label = game_ui.get_node_or_null("ScoreLabel")
-		var health_label = game_ui.get_node_or_null("HesalthLabel")
+		var health_label = game_ui.get_node_or_null("HealthLabel")
+		var level_label = game_ui.get_node_or_null("LevelLabel") 
 
 		if score_label:
 			score_label.text = str(GameData.score)
 		if health_label:
 			health_label.text = str(GameData.player_health)
+		if level_label:
+			level_label.text = str(GameData.level).pad_zeros(2) 
 
 	if GameData.player_health <= 0:
 		var canvas_layer = get_tree().current_scene.get_node_or_null("CanvasLayer")
@@ -28,6 +31,7 @@ func update_ui():
 			var game_over_panel = canvas_layer.get_node_or_null("GameOverPanel")
 			if game_over_panel:
 				game_over_panel.show_panel()
+
 
 func decrease_health(amount: int):
 	GameData.player_health -= amount
@@ -42,10 +46,8 @@ func check_level_completion():
 		return
 
 	var current_scene_name = get_tree().current_scene.name
-	print("Checking level completion in:", current_scene_name)
 
 	if current_scene_name == "MainMenu" or current_scene_name == "StartingScreen":
-		print("Skipping level completion check in:", current_scene_name)
 		return
 
 	var no_enemies_left = get_tree().get_nodes_in_group("enemy").is_empty()
@@ -72,8 +74,12 @@ func load_next_level():
 
 		get_tree().call_deferred("change_scene_to_file", next_scene_name)
 
+		await get_tree().process_frame 
+		update_ui() 
+
 	else:
-		show_victory_panel()  
+		show_victory_panel()
+
 
 func show_victory_panel():
 	is_loading_next_level = false 

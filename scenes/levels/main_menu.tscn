@@ -1,8 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://datpt5jrjdb5k"]
+[gd_scene load_steps=8 format=3 uid="uid://datpt5jrjdb5k"]
 
 [ext_resource type="Script" path="res://scripts/main_menu.gd" id="1_cnuu1"]
 [ext_resource type="FontFile" uid="uid://btj6n4lkyrvnh" path="res://assets/font/pixelated-loveNew.ttf" id="2_lksvq"]
-[ext_resource type="Texture2D" uid="uid://q3hk7i4q8a07" path="res://assets/background/black.PNG" id="3_0hsdm"]
+[ext_resource type="Texture2D" uid="uid://q3hk7i4q8a07" path="res://assets/scene/black.PNG" id="3_0hsdm"]
+[ext_resource type="AudioStream" uid="uid://dowalyopba0hc" path="res://assets/audio/confirm.mp3" id="4_oxmsq"]
+[ext_resource type="AudioStream" uid="uid://eqqkx6f1rff6" path="res://assets/audio/exit.mp3" id="5_hxoa8"]
 
 [sub_resource type="FontVariation" id="FontVariation_rmufx"]
 base_font = ExtResource("2_lksvq")
@@ -68,6 +70,12 @@ theme_override_fonts/font = SubResource("FontVariation_mlis3")
 theme_override_font_sizes/font_size = 70
 text = "BUBBLE BOBBLE"
 horizontal_alignment = 1
+
+[node name="ConfirmSound" type="AudioStreamPlayer2D" parent="CanvasLayer/Panel"]
+stream = ExtResource("4_oxmsq")
+
+[node name="ExitSound" type="AudioStreamPlayer2D" parent="CanvasLayer/Panel"]
+stream = ExtResource("5_hxoa8")
 
 [connection signal="pressed" from="CanvasLayer/Panel/StartButton" to="CanvasLayer/Panel" method="_on_start_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/Panel/ExitButton" to="CanvasLayer/Panel" method="_on_exit_button_pressed"]

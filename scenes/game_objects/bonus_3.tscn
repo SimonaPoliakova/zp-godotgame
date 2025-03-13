@@ -1,7 +1,8 @@
-[gd_scene load_steps=17 format=3 uid="uid://sh6bdmag88gr"]
+[gd_scene load_steps=18 format=3 uid="uid://sh6bdmag88gr"]
 
 [ext_resource type="Texture2D" uid="uid://bv48qa6vohr61" path="res://assets/scene/Melon.png" id="1_emttk"]
 [ext_resource type="Script" path="res://scripts/bonus.gd" id="1_mb7ll"]
+[ext_resource type="AudioStream" uid="uid://b4o4vhxfhq540" path="res://assets/audio/bonus.mp3" id="3_lrows"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_yhela"]
 atlas = ExtResource("1_emttk")
@@ -112,5 +113,8 @@ frame_progress = 0.117078
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_2i0gw")
+
+[node name="CollectedSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_lrows")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

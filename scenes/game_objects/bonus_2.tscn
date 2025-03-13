@@ -1,7 +1,8 @@
-[gd_scene load_steps=17 format=3 uid="uid://cnjueakirl3c7"]
+[gd_scene load_steps=18 format=3 uid="uid://cnjueakirl3c7"]
 
 [ext_resource type="Texture2D" uid="uid://bjj8i1ususg8o" path="res://assets/scene/Cherries.png" id="1_6ir0h"]
 [ext_resource type="Script" path="res://scripts/bonus.gd" id="1_8pdcf"]
+[ext_resource type="AudioStream" uid="uid://b4o4vhxfhq540" path="res://assets/audio/bonus.mp3" id="3_xm758"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2cw3a"]
 atlas = ExtResource("1_6ir0h")
@@ -112,5 +113,8 @@ frame_progress = 0.121954
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_1fvua")
+
+[node name="CollectedSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_xm758")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

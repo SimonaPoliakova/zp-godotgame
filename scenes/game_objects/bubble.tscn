@@ -1,11 +1,13 @@
-[gd_scene load_steps=5 format=3 uid="uid://dswblgmi6puyh"]
+[gd_scene load_steps=6 format=3 uid="uid://dswblgmi6puyh"]
 
 [ext_resource type="Script" path="res://scripts/bubble.gd" id="1_p7f5t"]
 [ext_resource type="PackedScene" uid="uid://dctmpa4qowm6" path="res://scenes/game_objects/bubble_trapped.tscn" id="2_c1yfp"]
 [ext_resource type="Texture2D" uid="uid://d24fj00mu0fv1" path="res://assets/scene/bubble.png" id="2_drlr5"]
+[ext_resource type="AudioStream" uid="uid://map357dgnk52" path="res://assets/audio/bubble.mp3" id="4_0v5ss"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_3e8dt"]
-radius = 75.06
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_oo828"]
+radius = 76.0
+height = 152.0
 
 [node name="bubble" type="Area2D"]
 scale = Vector2(0.2, 0.2)
@@ -20,11 +22,14 @@ texture = ExtResource("2_drlr5")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-6, 1)
-shape = SubResource("CircleShape2D_3e8dt")
+shape = SubResource("CapsuleShape2D_oo828")
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 3.0
 autostart = true
+
+[node name="BubbleBlow" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_0v5ss")
 
 [connection signal="body_entered" from="." to="." method="_on_bubble_body_entered"]
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

@@ -8,8 +8,13 @@ var start_position: Vector2
 var move_direction: float = 1.0
 var has_captured_enemy: bool = false
 
+@onready var bubbleblow_sound = $BubbleBlow
+
 func _ready():
 	start_position = global_position
+	if bubbleblow_sound:
+		bubbleblow_sound.play()
+
 
 func _physics_process(_delta):
 	if has_captured_enemy:
@@ -26,8 +31,7 @@ func set_direction(direction: float):
 func _on_bubble_body_entered(body):
 	if body.is_in_group("enemy") and not has_captured_enemy:
 		call_deferred("capture_enemy", body)  
-	elif body.is_in_group("walls"):
-		queue_free()
+	elif body.is_in_group("walls"):		queue_free()
 
 
 func capture_enemy(enemy):

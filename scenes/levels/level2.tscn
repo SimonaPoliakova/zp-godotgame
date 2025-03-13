@@ -1,22 +1,13 @@
-[gd_scene load_steps=22 format=3 uid="uid://cjpeixvbs668c"]
+[gd_scene load_steps=21 format=3 uid="uid://cjpeixvbs668c"]
 
-[ext_resource type="Texture2D" uid="uid://q3hk7i4q8a07" path="res://assets/background/black.PNG" id="1_dlorc"]
+[ext_resource type="Texture2D" uid="uid://q3hk7i4q8a07" path="res://assets/scene/black.PNG" id="1_dlorc"]
 [ext_resource type="Script" path="res://scripts/level.gd" id="1_iygr2"]
+[ext_resource type="PackedScene" uid="uid://dx46p13fjj7mf" path="res://scenes/game_over_panel.tscn" id="2_gr48u"]
 [ext_resource type="Texture2D" uid="uid://ckkcion0yvuig" path="res://assets/scene/Terrain (16x16).png" id="2_hhsv2"]
 [ext_resource type="PackedScene" uid="uid://dekti528g6ebp" path="res://scenes/characters/player.tscn" id="3_f6ry8"]
 [ext_resource type="PackedScene" uid="uid://1n8u2lmx4xea" path="res://scenes/characters/enemy.tscn" id="4_ybih6"]
-[ext_resource type="Script" path="res://scripts/game_over_panel.gd" id="5_vnbim"]
-[ext_resource type="FontFile" uid="uid://btj6n4lkyrvnh" path="res://assets/font/pixelated-loveNew.ttf" id="6_mpwxq"]
 [ext_resource type="PackedScene" uid="uid://itoh3l6i5gv6" path="res://scenes/GameUI.tscn" id="7_wcr3b"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8ibom"]
-bg_color = Color(0, 0, 0, 1)
-
-[sub_resource type="FontVariation" id="FontVariation_ueu3c"]
-base_font = ExtResource("6_mpwxq")
-
-[sub_resource type="FontVariation" id="FontVariation_gppop"]
-base_font = ExtResource("6_mpwxq")
+[ext_resource type="AudioStream" uid="uid://5du0lk1bgudi" path="res://assets/audio/music.mp3" id="8_6o4od"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_e35sg"]
 resource_name = "map"
@@ -342,55 +333,20 @@ size = Vector2(112, 16)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_upea7"]
 size = Vector2(192, 16)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ovqf8"]
+size = Vector2(46, 50)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0g74l"]
+size = Vector2(813, 20)
+
 [node name="Level 2" type="Node"]
 script = ExtResource("1_iygr2")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = 2
 
-[node name="GameOverPanel" type="Panel" parent="CanvasLayer"]
-process_mode = 3
+[node name="GameOverPanel" parent="CanvasLayer" instance=ExtResource("2_gr48u")]
 visible = false
-z_index = 10
-offset_right = 1152.0
-offset_bottom = 648.0
-mouse_filter = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_8ibom")
-script = ExtResource("5_vnbim")
-
-[node name="MainMenuButton" type="Button" parent="CanvasLayer/GameOverPanel"]
-z_index = 11
-layout_mode = 0
-offset_left = 478.0
-offset_top = 337.0
-offset_right = 667.0
-offset_bottom = 386.0
-theme_override_fonts/font = SubResource("FontVariation_ueu3c")
-theme_override_font_sizes/font_size = 30
-action_mode = 0
-text = "MAIN MENU"
-
-[node name="RestartButton" type="Button" parent="CanvasLayer/GameOverPanel"]
-z_index = 11
-layout_mode = 0
-offset_left = 478.0
-offset_top = 409.0
-offset_right = 667.0
-offset_bottom = 458.0
-theme_override_fonts/font = ExtResource("6_mpwxq")
-theme_override_font_sizes/font_size = 30
-text = "RESTART"
-
-[node name="GameOverText" type="Label" parent="CanvasLayer/GameOverPanel"]
-layout_mode = 0
-offset_left = 305.0
-offset_top = 166.0
-offset_right = 840.0
-offset_bottom = 300.0
-theme_override_fonts/font = SubResource("FontVariation_gppop")
-theme_override_font_sizes/font_size = 70
-text = "Game Over!"
-horizontal_alignment = 1
 
 [node name="SceneObjects" type="Node" parent="."]
 
@@ -488,11 +444,33 @@ position = Vector2(769, 436)
 [node name="BubbleStop" type="Node2D" parent="SceneObjects" groups=["bubble_stop"]]
 position = Vector2(576, 98)
 
+[node name="edges" type="Node" parent="SceneObjects"]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="SceneObjects/edges"]
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="SceneObjects/edges/StaticBody2D"]
+position = Vector2(956, 24)
+shape = SubResource("RectangleShape2D_ovqf8")
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="SceneObjects/edges"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SceneObjects/edges/StaticBody2D2"]
+position = Vector2(194, 25)
+shape = SubResource("RectangleShape2D_ovqf8")
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="SceneObjects/edges"]
+position = Vector2(192, 25)
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="SceneObjects/edges/StaticBody2D3"]
+position = Vector2(381.5, -35)
+shape = SubResource("RectangleShape2D_0g74l")
+
 [node name="GameUI" parent="." instance=ExtResource("7_wcr3b")]
 offset_left = 1.0
 offset_top = 1.0
 offset_right = 1.0
 offset_bottom = 1.0
 
-[connection signal="pressed" from="CanvasLayer/GameOverPanel/MainMenuButton" to="CanvasLayer/GameOverPanel" method="_on_main_menu_button_pressed"]
-[connection signal="pressed" from="CanvasLayer/GameOverPanel/RestartButton" to="CanvasLayer/GameOverPanel" method="_on_restart_button_pressed"]
+[node name="Music" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("8_6o4od")
+volume_db = -10.0

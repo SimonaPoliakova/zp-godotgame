@@ -1,7 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://dx46p13fjj7mf"]
+[gd_scene load_steps=8 format=3 uid="uid://dx46p13fjj7mf"]
 
 [ext_resource type="Script" path="res://scripts/game_over_panel.gd" id="1_yjtcy"]
 [ext_resource type="FontFile" uid="uid://btj6n4lkyrvnh" path="res://assets/font/pixelated-loveNew.ttf" id="2_uci46"]
+[ext_resource type="AudioStream" uid="uid://dowalyopba0hc" path="res://assets/audio/confirm.mp3" id="3_oo1wg"]
+[ext_resource type="AudioStream" uid="uid://d4etm4j0q3elp" path="res://assets/audio/game_over.mp3" id="4_k1070"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fmdrp"]
 bg_color = Color(0, 0, 0, 1)
@@ -55,6 +57,12 @@ theme_override_fonts/font = SubResource("FontVariation_psu0k")
 theme_override_font_sizes/font_size = 70
 text = "Game Over!"
 horizontal_alignment = 1
+
+[node name="ConfirmSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_oo1wg")
+
+[node name="GameOverSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_k1070")
 
 [connection signal="pressed" from="MainMenuButton" to="." method="_on_main_menu_button_pressed"]
 [connection signal="pressed" from="RestartButton" to="." method="_on_restart_button_pressed"]
