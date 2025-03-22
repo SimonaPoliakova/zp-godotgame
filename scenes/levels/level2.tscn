@@ -442,7 +442,7 @@ position = Vector2(749, 244)
 position = Vector2(769, 436)
 
 [node name="BubbleStop" type="Node2D" parent="SceneObjects" groups=["bubble_stop"]]
-position = Vector2(576, 98)
+position = Vector2(576, 114)
 
 [node name="edges" type="Node" parent="SceneObjects"]
 

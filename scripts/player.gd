@@ -16,7 +16,7 @@ func _ready():
 	starting_position = global_position
 	$AnimatedSprite2D.play("default")  
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	if Input.is_action_pressed("right"):
 		velocity.x = speed
 		$AnimatedSprite2D.play("run")

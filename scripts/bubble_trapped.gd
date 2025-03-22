@@ -25,7 +25,7 @@ func _physics_process(delta):
 			has_stopped = true
 			stop_position = position
 
-func _process(delta):
+func _process(_delta):
 	if has_stopped:
 		var bobbing_y = sin(Time.get_ticks_msec() / 1000.0 * bobbing_speed + bobbing_offset) * bobbing_amount
 		position.y = stop_position.y + bobbing_y  

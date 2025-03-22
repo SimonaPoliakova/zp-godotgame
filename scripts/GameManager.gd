@@ -54,10 +54,6 @@ func check_level_completion():
 	var no_bonuses_left = get_tree().get_nodes_in_group("bonus").is_empty()
 	var no_trapped_enemies_left = get_tree().get_nodes_in_group("trapped_enemy").is_empty()
 
-	print("No enemies left:", no_enemies_left)
-	print("No bonuses left:", no_bonuses_left)
-	print("No trapped enemies left:", no_trapped_enemies_left)
-
 	if no_enemies_left and no_bonuses_left and no_trapped_enemies_left and not is_loading_next_level:
 		print("All conditions met, loading next level.")
 		is_loading_next_level = true

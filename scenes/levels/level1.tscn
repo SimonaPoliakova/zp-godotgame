@@ -351,6 +351,7 @@ script = ExtResource("1_4qtpp")
 layer = 2
 
 [node name="GameOverPanel" parent="CanvasLayer" instance=ExtResource("2_gec00")]
+visible = false
 
 [node name="SceneObjects" type="Node" parent="."]
 

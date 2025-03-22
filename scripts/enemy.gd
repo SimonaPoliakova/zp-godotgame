@@ -20,7 +20,7 @@ func _ready():
 	velocity.x = speed if facing_right else -speed
 	schedule_next_jump()
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	if not is_on_floor():
 		velocity.y += gravity
 
