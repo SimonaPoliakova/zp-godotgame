@@ -1,11 +1,7 @@
 extends Node
 
-@onready var music = $Music
-
-
 func _ready():
-	if music:
-		music.play()
+	AudioManager.play_music()
 	GameManager.check_level_completion()
 	
 func restart():

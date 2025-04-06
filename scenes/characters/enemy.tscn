@@ -133,4 +133,8 @@ shape = SubResource("RectangleShape2D_vwvkf")
 wait_time = 4.0
 autostart = true
 
+[node name="AngryTimer" type="Timer" parent="."]
+wait_time = 10.0
+
 [connection signal="timeout" from="JumpTimer" to="." method="_on_JumpTimer_timeout"]
+[connection signal="timeout" from="AngryTimer" to="." method="_on_AngryTimer_timeout"]

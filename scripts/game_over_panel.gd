@@ -19,10 +19,10 @@ func hide_panel():
 	get_tree().paused = false  
 
 func _on_main_menu_button_pressed():
-	print("Main menu button clicked!")
 	if confirm_sound:
 		confirm_sound.play()
 	await get_tree().create_timer(0.3).timeout 
+	AudioManager.stop_music()
 	get_tree().change_scene_to_file("res://scenes/levels/main_menu.tscn")
 
 func _on_restart_button_pressed():

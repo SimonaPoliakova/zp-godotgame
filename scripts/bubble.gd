@@ -31,7 +31,8 @@ func set_direction(direction: float):
 func _on_bubble_body_entered(body):
 	if body.is_in_group("enemy") and not has_captured_enemy:
 		call_deferred("capture_enemy", body)  
-	elif body.is_in_group("walls"):		queue_free()
+	elif body.is_in_group("walls"):		
+		queue_free()
 
 
 func capture_enemy(enemy):

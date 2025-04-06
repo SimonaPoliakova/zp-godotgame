@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://drge4gb2hwctx"]
+[gd_scene load_steps=22 format=3 uid="uid://drge4gb2hwctx"]
 
 [ext_resource type="Script" path="res://scripts/level.gd" id="1_4qtpp"]
 [ext_resource type="Texture2D" uid="uid://q3hk7i4q8a07" path="res://assets/scene/black.PNG" id="1_tmwbo"]
@@ -7,7 +7,6 @@
 [ext_resource type="PackedScene" uid="uid://1n8u2lmx4xea" path="res://scenes/characters/enemy.tscn" id="5_uwd31"]
 [ext_resource type="PackedScene" uid="uid://dekti528g6ebp" path="res://scenes/characters/player.tscn" id="5_vf0yc"]
 [ext_resource type="PackedScene" uid="uid://itoh3l6i5gv6" path="res://scenes/GameUI.tscn" id="7_e5cxt"]
-[ext_resource type="AudioStream" uid="uid://5du0lk1bgudi" path="res://assets/audio/music.mp3" id="8_5bx60"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_e35sg"]
 resource_name = "map"
@@ -473,7 +472,3 @@ position = Vector2(381.5, -35)
 shape = SubResource("RectangleShape2D_ex8sl")
 
 [node name="GameUI" parent="." instance=ExtResource("7_e5cxt")]
-
-[node name="Music" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("8_5bx60")
-volume_db = -10.0

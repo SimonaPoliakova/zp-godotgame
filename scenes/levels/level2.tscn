@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://cjpeixvbs668c"]
+[gd_scene load_steps=20 format=3 uid="uid://cjpeixvbs668c"]
 
 [ext_resource type="Texture2D" uid="uid://q3hk7i4q8a07" path="res://assets/scene/black.PNG" id="1_dlorc"]
 [ext_resource type="Script" path="res://scripts/level.gd" id="1_iygr2"]
@@ -7,7 +7,6 @@
 [ext_resource type="PackedScene" uid="uid://dekti528g6ebp" path="res://scenes/characters/player.tscn" id="3_f6ry8"]
 [ext_resource type="PackedScene" uid="uid://1n8u2lmx4xea" path="res://scenes/characters/enemy.tscn" id="4_ybih6"]
 [ext_resource type="PackedScene" uid="uid://itoh3l6i5gv6" path="res://scenes/GameUI.tscn" id="7_wcr3b"]
-[ext_resource type="AudioStream" uid="uid://5du0lk1bgudi" path="res://assets/audio/music.mp3" id="8_6o4od"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_e35sg"]
 resource_name = "map"
@@ -430,16 +429,16 @@ scale = Vector2(1.5, 1.5)
 [node name="enemies" type="Node" parent="SceneObjects"]
 
 [node name="enemy" parent="SceneObjects/enemies" instance=ExtResource("4_ybih6")]
-position = Vector2(536, 557)
+position = Vector2(507, 557)
 
 [node name="enemy2" parent="SceneObjects/enemies" instance=ExtResource("4_ybih6")]
-position = Vector2(419, 340)
+position = Vector2(722, 340)
 
 [node name="enemy3" parent="SceneObjects/enemies" instance=ExtResource("4_ybih6")]
-position = Vector2(749, 244)
+position = Vector2(438, 244)
 
 [node name="enemy4" parent="SceneObjects/enemies" instance=ExtResource("4_ybih6")]
-position = Vector2(769, 436)
+position = Vector2(606, 148)
 
 [node name="BubbleStop" type="Node2D" parent="SceneObjects" groups=["bubble_stop"]]
 position = Vector2(576, 114)
@@ -470,7 +469,3 @@ offset_left = 1.0
 offset_top = 1.0
 offset_right = 1.0
 offset_bottom = 1.0
-
-[node name="Music" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("8_6o4od")
-volume_db = -10.0

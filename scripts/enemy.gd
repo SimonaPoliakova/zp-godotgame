@@ -1,24 +1,29 @@
 extends CharacterBody2D
 
 @export var speed := 60.0
+@export var angry_speed := 120.0 
 @export var gravity := 16.0
 @export var jump_force_min := -420.0
 @export var jump_force_max := -510.0
 @export var detection_range := 150.0  
 @export var jump_interval_min := 2.0  
 @export var jump_interval_max := 5.0  
+@export var angry_time := 10.0  
 
 @onready var sprite = $AnimatedSprite2D
 @onready var jump_timer = $JumpTimer
+@onready var angry_timer = $AngryTimer  
 @onready var player = get_tree().get_first_node_in_group("player")
 
 var facing_right := true
+var is_angry := false  
 
 func _ready():
 	add_to_group("enemy")
 	sprite.play("run")
 	velocity.x = speed if facing_right else -speed
 	schedule_next_jump()
+	angry_timer.start(angry_time)  
 
 func _physics_process(_delta):
 	if not is_on_floor():
@@ -39,13 +44,13 @@ func chase_player():
 		return
 
 	var direction = 1 if player.global_position.x > global_position.x else -1
-	velocity.x = direction * speed
+	velocity.x = direction * (angry_speed if is_angry else speed)  
 
 	if (direction > 0 and not facing_right) or (direction < 0 and facing_right):
 		flip()
 
 func patrol():
-	velocity.x = speed if facing_right else -speed
+	velocity.x = (angry_speed if is_angry else speed) if facing_right else -(angry_speed if is_angry else speed) 
 
 func flip():
 	facing_right = not facing_right
@@ -62,3 +67,10 @@ func schedule_next_jump():
 
 func _on_JumpTimer_timeout():
 	jump()
+
+func _on_AngryTimer_timeout():
+	become_angry() 
+
+func become_angry():
+	is_angry = true
+	modulate = Color(1, 0, 0)  

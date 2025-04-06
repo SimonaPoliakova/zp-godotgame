@@ -192,11 +192,11 @@ animations = [{
 size = Vector2(24, 29)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rob5w"]
-size = Vector2(28, 33)
+size = Vector2(28, 32)
 
 [node name="CharacterBody2D" type="CharacterBody2D" groups=["player"]]
 z_index = 2
-collision_layer = 3
+collision_layer = 2
 collision_mask = 5
 script = ExtResource("1_qgts2")
 
@@ -211,11 +211,11 @@ position = Vector2(6, -1.5)
 shape = SubResource("RectangleShape2D_7vi0y")
 
 [node name="EnemyChecker" type="Area2D" parent="."]
-collision_layer = 33
+collision_layer = 32
 collision_mask = 17
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyChecker"]
-position = Vector2(6, -1.5)
+position = Vector2(6, -1)
 shape = SubResource("RectangleShape2D_rob5w")
 
 [node name="JumpSound" type="AudioStreamPlayer2D" parent="."]

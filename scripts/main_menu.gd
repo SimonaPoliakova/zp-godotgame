@@ -6,8 +6,8 @@ extends Control
 @onready var exit_sound = $ExitSound   
 
 func _ready(): 
-	print("Main Menu Loaded. Current Level (after reset):", GameData.level)
 	get_tree().paused = false
+	AudioManager.stop_music()
 
 func _on_start_button_pressed():
 	if start_sound:

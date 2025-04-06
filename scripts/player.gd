@@ -6,7 +6,7 @@ var speed = 160
 var gravity = 20
 var jump = -530
 
-var bubble_speed = 270
+var bubble_speed = 330
 
 var starting_position: Vector2 
  
@@ -49,7 +49,6 @@ func shoot():
 	var bubble_ins = bubble.instantiate()  
 
 	if bubble_ins == null:
-		print("Error: Could not instantiate bubble!")
 		return  
 
 	var offset = Vector2(20, 0)  
@@ -69,9 +68,11 @@ func _on_AnimatedSprite_animation_finished():
 		$AnimatedSprite2D.play("default")  
 
 func _on_enemy_checker_body_entered(body: Node2D) -> void:
-	if body.is_in_group("enemy"): 
-		print("Player hit an enemy!")
+	if body.is_in_group("enemy"):
 		GameManager.decrease_health(1)
 		global_position = starting_position
+	
+
+
 
 		

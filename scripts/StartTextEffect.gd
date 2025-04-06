@@ -15,9 +15,6 @@ func _ready():
 	text_label.text = ""  
 	prompt_label.visible = false  
 	_start_typing()
-	print("Current scene name:", get_tree().current_scene.name)
-	
-
 
 func _start_typing():
 	if typing_sound:
@@ -30,7 +27,6 @@ func _start_typing():
 		index += 1
 		await get_tree().create_timer(type_speed).timeout
 		
-
 		if not typing_sound.playing:
 			typing_sound.play()
 
